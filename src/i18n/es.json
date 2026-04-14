@@ -1,0 +1,46 @@
+{
+  "menu": {
+    "home": "Inicio",
+    "services": "Nuestros servicios",
+    "catalog": "Catálogo de coches",
+    "about": "Sobre nosotros",
+    "contacts": "Contactos"
+  },
+
+  "header": {
+    "consultation_request": "Solicitar consulta"
+  },
+
+  "contacts": {
+    "title": "Contactos",
+    "contact_us": "Póngase en contacto con nosotros",
+    "phone": "Teléfono",
+    "email": "Email",
+    "address": "Dirección",
+    "write_us": "Escríbanos",
+    "name": "Nombre",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "map": "Mapa"
+  },
+
+  "services": {
+    "title": "Nuestros servicios",
+    "import_sale": "Importación y venta",
+    "import_sale_desc": "Ofrecemos coches ya entregados en España y listos para la venta.",
+    "catalog": "Catálogo de coches (en desarrollo)",
+
+    "import_custom": "Importación por encargo",
+    "import_custom_desc": "Deje su solicitud y encontraremos un coche según sus requisitos.",
+
+    "brand": "Marca",
+    "model": "Modelo",
+    "budget": "Presupuesto",
+    "comment": "Comentario",
+    "send_request": "Enviar solicitud",
+
+    "invest": "Inversiones en automóviles",
+    "invest_desc": "Ofrecemos esquemas de inversión con una rentabilidad del 8% al 20% anual.",
+    "invest_more": "Descripción del esquema — en desarrollo"
+  }
+}

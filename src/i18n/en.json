@@ -1,0 +1,46 @@
+{
+  "menu": {
+    "home": "Home",
+    "services": "Our services",
+    "catalog": "Car catalog",
+    "about": "About us",
+    "contacts": "Contacts"
+  },
+
+  "header": {
+    "consultation_request": "Request consultation"
+  },
+
+  "contacts": {
+    "title": "Contacts",
+    "contact_us": "Contact us",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "write_us": "Write to us",
+    "name": "Name",
+    "message": "Message",
+    "send": "Send",
+    "map": "Map"
+  },
+
+  "services": {
+    "title": "Our services",
+    "import_sale": "Import & sale",
+    "import_sale_desc": "We offer cars already delivered to Spain and ready for sale.",
+    "catalog": "Car catalog (in development)",
+
+    "import_custom": "Import on request",
+    "import_custom_desc": "Leave a request and we will find a car according to your requirements.",
+
+    "brand": "Brand",
+    "model": "Model",
+    "budget": "Budget",
+    "comment": "Comment",
+    "send_request": "Send request",
+
+    "invest": "Car investments",
+    "invest_desc": "We offer investment schemes with returns from 8% to 20% annually.",
+    "invest_more": "Scheme description — in development"
+  }
+}

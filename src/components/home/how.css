@@ -1,0 +1,45 @@
+.how-section {
+  padding: 100px 40px;
+  background: #fafafa;
+  text-align: center;
+}
+
+.how-title {
+  text-align: left !important;
+  font-size: 38px !important;
+  letter-spacing: 0.5px;
+  margin-bottom: 60px !important;
+  color: #000;
+}
+
+/* Steps кастомизация */
+.how-steps .ant-steps-item-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000 !important;
+}
+
+/* Активный шаг — красный */
+.how-steps .ant-steps-item-process .ant-steps-item-icon {
+  background: #ff1a1a !important;
+  border-color: #ff1a1a !important;
+}
+
+/* Завершённые шаги — тёмные */
+.how-steps .ant-steps-item-finish .ant-steps-item-icon {
+  border-color: #000 !important;
+}
+.how-steps .ant-steps-item-finish .ant-steps-icon {
+  color: #000 !important;
+}
+
+/* Hover эффект */
+.how-steps .ant-steps-item:hover .ant-steps-item-title {
+  color: #ff1a1a !important;
+  transition: 0.2s;
+}
+
+/* Убираем синий цвет Ant Design */
+.ant-steps-item-process .ant-steps-item-title {
+  color: #ff1a1a !important;
+}
