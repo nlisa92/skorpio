@@ -49,7 +49,7 @@ export default function HeaderBar() {
           }}
         >
           <img
-            src="/logo/logo.png"
+            src={`${import.meta.env.BASE_URL}logo/logo.png`}
             alt="Skorpio Importwagen"
             style={{
               height: 64,
