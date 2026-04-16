@@ -25,7 +25,7 @@ export default function FooterBar() {
           <Col xs={24} sm={12} md={6}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <img
-                src="/logo/logo.png"
+                src={`${import.meta.env.BASE_URL}logo/logo.png`}
                 alt="Skorpio Importwagen"
                 style={{
                   height: 60,
