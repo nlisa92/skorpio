@@ -11,30 +11,32 @@ const { Title, Paragraph } = Typography;
 export default function FAQ() {
   const itemsLeft = [
     {
-      key: 1,
+      key: "1",
       label: (
-        <span style={{ fontSize: 18 }}>
-          <ClockCircleOutlined style={{ marginRight: 10, color: "#ff1a1a" }} />
+        <span className="faq-label">
+          <ClockCircleOutlined className="faq-icon" />
           Plazos de entrega
         </span>
       ),
       children: (
-        <Paragraph style={{ fontSize: 16, color: "#555" }}>
-          Normalmente entre <strong>7 y 14 días</strong>, dependiendo del país de origen y la disponibilidad del vehículo.
+        <Paragraph className="faq-text">
+          Normalmente entre <strong>7 y 14 días</strong>, dependiendo del país
+          de origen y la disponibilidad del vehículo.
         </Paragraph>
       ),
     },
     {
-      key: 2,
+      key: "2",
       label: (
-        <span style={{ fontSize: 18 }}>
-          <SafetyCertificateOutlined style={{ marginRight: 10, color: "#ff1a1a" }} />
+        <span className="faq-label">
+          <SafetyCertificateOutlined className="faq-icon" />
           ¿Qué garantías ofrecen?
         </span>
       ),
       children: (
-        <Paragraph style={{ fontSize: 16, color: "#555" }}>
-          Ofrecemos <strong>transparencia total</strong>, informes completos del vehículo y seguridad jurídica en toda la operación.
+        <Paragraph className="faq-text">
+          Ofrecemos <strong>transparencia total</strong>, informes completos del
+          vehículo y seguridad jurídica en toda la operación.
         </Paragraph>
       ),
     },
@@ -42,100 +44,182 @@ export default function FAQ() {
 
   const itemsRight = [
     {
-      key: 3,
+      key: "3",
       label: (
-        <span style={{ fontSize: 18 }}>
-          <DollarOutlined style={{ marginRight: 10, color: "#ff1a1a" }} />
+        <span className="faq-label">
+          <DollarOutlined className="faq-icon" />
           Comisión
         </span>
       ),
       children: (
-        <Paragraph style={{ fontSize: 16, color: "#555" }}>
-          Trabajamos con una <strong>comisión fija</strong> que cubre todo el proceso de importación y entrega en España.
+        <Paragraph className="faq-text">
+          Trabajamos con una <strong>comisión fija</strong> que cubre todo el
+          proceso de importación y entrega en España.
         </Paragraph>
       ),
     },
     {
-      key: 4,
+      key: "4",
       label: (
-        <span style={{ fontSize: 18 }}>
-          <WarningOutlined style={{ marginRight: 10, color: "#ff1a1a" }} />
+        <span className="faq-label">
+          <WarningOutlined className="faq-icon" />
           Riesgos de inversión
         </span>
       ),
       children: (
-        <Paragraph style={{ fontSize: 16, color: "#555" }}>
-          Los riesgos son <strong>mínimos</strong> gracias a una selección adecuada del vehículo y un análisis previo del mercado.
+        <Paragraph className="faq-text">
+          Los riesgos son <strong>mínimos</strong> gracias a una selección
+          adecuada del vehículo y un análisis previo del mercado.
         </Paragraph>
       ),
     },
   ];
 
   return (
-    <div style={{ padding: "80px 40px", background: "#fff" }}>
-      <Title level={2} style={{ fontSize: 36, textAlign: "center" }}>
+    <div className="faq-section">
+      <Title level={2} className="faq-title">
         Preguntas frecuentes
       </Title>
 
-      <Paragraph style={{ textAlign: "center", color: "#666", marginTop: 10 }}>
-        Resolvemos las dudas más comunes sobre importación, garantías e inversión.
+      <Paragraph className="faq-subtitle">
+        Resolvemos las dudas más comunes sobre importación, garantías e
+        inversión.
       </Paragraph>
 
-      {/* Две колонки */}
-      <Row gutter={40} style={{ marginTop: 40 }}>
+      <Row gutter={[20, 20]} className="faq-row">
         <Col xs={24} md={12}>
-          <div
-            style={{
-              borderRadius: 16,
-              boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
-              padding: 20,
-              background: "white",
-              marginBottom: 20,
-            }}
-          >
+          <div className="faq-box">
             <Collapse items={itemsLeft} expandIconPosition="end" />
           </div>
         </Col>
 
         <Col xs={24} md={12}>
-          <div
-            style={{
-              borderRadius: 16,
-              boxShadow: "0 12px 30px rgba(0,0,0,0.08)",
-              padding: 20,
-              background: "white",
-              marginBottom: 20,
-            }}
-          >
+          <div className="faq-box">
             <Collapse items={itemsRight} expandIconPosition="end" />
           </div>
         </Col>
       </Row>
 
       {/* CTA */}
-      <div style={{ textAlign: "center", marginTop: 50 }}>
-        <Title level={4} style={{ marginBottom: 10 }}>
-          ¿Tienes más preguntas?
-        </Title>
-        <Paragraph style={{ color: "#666", marginBottom: 20 }}>
-          Estamos aquí para ayudarte con cualquier duda sobre importación o inversión.
+      <div className="faq-cta">
+        <Title level={4}>¿Tienes más preguntas?</Title>
+
+        <Paragraph>
+          Estamos aquí para ayudarte con cualquier duda sobre importación o
+          inversión.
         </Paragraph>
 
-        <Button
-          type="primary"
-          size="large"
-          style={{
-            background: "#ff1a1a",
-            border: "none",
-            padding: "0 40px",
-            height: 50,
-            fontSize: 18,
-          }}
-          href="/contactos"
-        >
+        <Button className="faq-btn" href="/contactos">
           Contáctanos
         </Button>
       </div>
+
+      {/* ================= STYLES ================= */}
+      <style>
+        {`
+/* ================= SECTION ================= */
+
+.faq-section {
+  padding: 80px 40px;
+  background: #fff;
+}
+
+/* ➕ ADD mobile padding */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 40px 16px; /* ✅ FIX */
+  }
+}
+
+/* ================= TITLE ================= */
+
+.faq-title {
+  font-size: 36px !important;
+  text-align: center;
+}
+
+/* ➕ ADD */
+@media (max-width: 768px) {
+  .faq-title {
+    font-size: 24px !important; /* ✅ FIX */
+  }
+}
+
+.faq-subtitle {
+  text-align: center;
+  color: #666;
+}
+
+/* ================= BOX ================= */
+
+.faq-box {
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  padding: 20px;
+  background: #fff;
+  height: 100%;
+}
+
+/* ================= LABEL ================= */
+
+.faq-label {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ➕ ADD mobile fix */
+@media (max-width: 768px) {
+  .faq-label {
+    font-size: 15px; /* ✅ FIX */
+  }
+}
+
+/* ================= ICON ================= */
+
+.faq-icon {
+  color: #ff1a1a;
+}
+
+/* ================= TEXT ================= */
+
+.faq-text {
+  font-size: 16px;
+  color: #555;
+}
+
+/* ➕ ADD */
+@media (max-width: 768px) {
+  .faq-text {
+    font-size: 14px; /* ✅ FIX */
+  }
+}
+
+/* ================= CTA ================= */
+
+.faq-cta {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.faq-btn {
+  background: #ff1a1a !important;
+  border: none !important;
+  color: #fff !important;
+  height: 50px;
+  padding: 0 40px;
+  font-size: 16px;
+}
+
+/* ➕ ADD mobile button */
+@media (max-width: 768px) {
+  .faq-btn {
+    width: 100%; /* ✅ FIX */
+  }
+}
+        `}
+      </style>
     </div>
   );
 }

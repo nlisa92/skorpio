@@ -1,3 +1,4 @@
+/* ===================== COUNTER ===================== */
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -17,6 +18,15 @@
   }
 }
 
+/* ➕ ADD: адаптация counter */
+@media (max-width: 768px) {
+  .counter {
+    font-size: 14px; /* ➕ ADD */
+    padding: 4px 8px; /* ➕ ADD */
+  }
+}
+
+/* ===================== HERO ===================== */
 .hero {
   position: relative;
 
@@ -56,6 +66,26 @@
   }
 }
 
+/* ➕ ADD: адаптация hero (самое важное место) */
+@media (max-width: 768px) {
+  .hero {
+    display: flex; /* ➕ ADD */
+    justify-content: center; /* ➕ ADD */
+    align-items: center; /* ➕ ADD */
+  }
+
+  .hero .framework {
+    transform: scale(0.7); /* ✅ FIX */
+    top: 20px; /* ✅ FIX */
+  }
+
+  .hero .vite {
+    transform: scale(0.6); /* ✅ FIX */
+    top: 80px; /* ✅ FIX */
+  }
+}
+
+/* ===================== CENTER ===================== */
 #center {
   display: flex;
   flex-direction: column;
@@ -70,6 +100,15 @@
   }
 }
 
+/* ➕ ADD: фикс возможных проблем с высотой */
+@media (max-width: 768px) {
+  #center {
+    flex-grow: 0; /* ✅ FIX */
+    min-height: 100%; /* ➕ ADD */
+  }
+}
+
+/* ===================== NEXT STEPS ===================== */
 #next-steps {
   display: flex;
   border-top: 1px solid var(--border);
@@ -78,6 +117,7 @@
   & > div {
     flex: 1 1 0;
     padding: 32px;
+
     @media (max-width: 1024px) {
       padding: 24px 20px;
     }
@@ -95,6 +135,14 @@
   }
 }
 
+/* ➕ ADD: уменьшение отступов на телефонах */
+@media (max-width: 768px) {
+  #next-steps > div {
+    padding: 16px; /* ✅ FIX */
+  }
+}
+
+/* ===================== DOCS ===================== */
 #docs {
   border-right: 1px solid var(--border);
 
@@ -104,6 +152,7 @@
   }
 }
 
+/* ===================== LIST ===================== */
 #next-steps ul {
   list-style: none;
   padding: 0;
@@ -130,6 +179,7 @@
     &:hover {
       box-shadow: var(--shadow);
     }
+
     .button-icon {
       height: 18px;
       width: 18px;
@@ -153,14 +203,32 @@
   }
 }
 
+/* ➕ ADD: фикс для очень маленьких экранов */
+@media (max-width: 480px) {
+  #next-steps ul li {
+    flex: 1 1 100%; /* ✅ FIX */
+  }
+}
+
+/* ===================== SPACER ===================== */
 #spacer {
   height: 88px;
   border-top: 1px solid var(--border);
+
   @media (max-width: 1024px) {
     height: 48px;
   }
 }
 
+/* ➕ ADD: убрать жёсткую высоту */
+@media (max-width: 768px) {
+  #spacer {
+    height: auto; /* ✅ FIX */
+    min-height: 40px; /* ➕ ADD */
+  }
+}
+
+/* ===================== TICKS ===================== */
 .ticks {
   position: relative;
   width: 100%;
@@ -177,6 +245,7 @@
     left: 0;
     border-left-color: var(--border);
   }
+
   &::after {
     right: 0;
     border-right-color: var(--border);

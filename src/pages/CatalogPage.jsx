@@ -8,6 +8,7 @@ import {
   InputNumber,
   Button,
   Pagination,
+  Drawer,
 } from "antd";
 
 const { Title, Paragraph } = Typography;
@@ -23,6 +24,8 @@ export default function CatalogPage() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterOpen, setFilterOpen] = useState(false);
+
   const pageSize = 6;
 
   useEffect(() => {
@@ -37,17 +40,9 @@ export default function CatalogPage() {
   const applyFilters = () => {
     let result = cars;
 
-    if (filters.brand) {
-      result = result.filter((c) => c.brand === filters.brand);
-    }
-
-    if (filters.min) {
-      result = result.filter((c) => c.price >= filters.min);
-    }
-
-    if (filters.max) {
-      result = result.filter((c) => c.price <= filters.max);
-    }
+    if (filters.brand) result = result.filter((c) => c.brand === filters.brand);
+    if (filters.min) result = result.filter((c) => c.price >= filters.min);
+    if (filters.max) result = result.filter((c) => c.price <= filters.max);
 
     setFiltered(result);
     setCurrentPage(1);
@@ -62,116 +57,87 @@ export default function CatalogPage() {
   const startIndex = (currentPage - 1) * pageSize;
   const carsToShow = filtered.slice(startIndex, startIndex + pageSize);
 
+  const FilterContent = (
+    <Card className="filter-card">
+      <Title level={4}>Filtros</Title>
+
+      <div className="filter-item">
+        <label>Marca</label>
+        <Select
+          placeholder="Seleccionar"
+          value={filters.brand}
+          onChange={(v) => setFilters({ ...filters, brand: v })}
+          allowClear
+          className="filter-control"
+        >
+          <Select.Option value="BMW">BMW</Select.Option>
+          <Select.Option value="Audi">Audi</Select.Option>
+          <Select.Option value="Mercedes">Mercedes</Select.Option>
+        </Select>
+      </div>
+
+      <div className="filter-item">
+        <label>Precio mín.</label>
+        <InputNumber
+          value={filters.min}
+          onChange={(v) => setFilters({ ...filters, min: v })}
+          className="filter-control"
+        />
+      </div>
+
+      <div className="filter-item">
+        <label>Precio máx.</label>
+        <InputNumber
+          value={filters.max}
+          onChange={(v) => setFilters({ ...filters, max: v })}
+          className="filter-control"
+        />
+      </div>
+
+      <Button block onClick={applyFilters} className="btn-primary">
+        Aplicar filtros
+      </Button>
+
+      <Button block onClick={resetFilters}>
+        Resetear
+      </Button>
+    </Card>
+  );
+
   return (
-    <div style={{ padding: "60px 40px", background: "#fff" }}>
-      <Title style={{ fontSize: 42, marginBottom: 30 }}>
-        Catálogo de vehículos
-      </Title>
+    <div className="catalog-page">
+      {/* HEADER */}
+      <div className="catalog-header">
+        <Title className="catalog-title">Catálogo de vehículos</Title>
 
-      <Row gutter={40}>
-        {/* SIDEBAR */}
-        <Col span={6}>
-          <Card
-            style={{
-              padding: 20,
-              borderRadius: 12,
-              border: "1px solid #ddd",
-            }}
-          >
-            <Title level={4} style={{ marginBottom: 20 }}>
-              Filtros
-            </Title>
+        {/* MOBILE FILTER BUTTON */}
+        <Button
+          className="mobile-filter-btn"
+          onClick={() => setFilterOpen(true)}
+        >
+          Filtros
+        </Button>
+      </div>
 
-            <div style={{ marginBottom: 20 }}>
-              <label>Marca</label>
-              <Select
-                placeholder="Seleccionar"
-                style={{ width: "100%", marginTop: 5 }}
-                value={filters.brand}
-                onChange={(value) => setFilters({ ...filters, brand: value })}
-                allowClear
-              >
-                <Select.Option value="BMW">BMW</Select.Option>
-                <Select.Option value="Audi">Audi</Select.Option>
-                <Select.Option value="Mercedes">Mercedes</Select.Option>
-              </Select>
-            </div>
-
-            <div style={{ marginBottom: 20 }}>
-              <label>Precio mín.</label>
-              <InputNumber
-                placeholder="Desde"
-                style={{ width: "100%", marginTop: 5 }}
-                value={filters.min}
-                onChange={(value) => setFilters({ ...filters, min: value })}
-              />
-            </div>
-
-            <div style={{ marginBottom: 20 }}>
-              <label>Precio máx.</label>
-              <InputNumber
-                placeholder="Hasta"
-                style={{ width: "100%", marginTop: 5 }}
-                value={filters.max}
-                onChange={(value) => setFilters({ ...filters, max: value })}
-              />
-            </div>
-
-            <Button
-              block
-              style={{
-                background: "#444",
-                border: "none",
-                color: "#fff",
-                marginBottom: 10,
-              }}
-              onClick={applyFilters}
-            >
-              Aplicar filtros
-            </Button>
-
-            <Button block onClick={resetFilters}>
-              Resetear
-            </Button>
-          </Card>
+      <Row gutter={[24, 24]}>
+        {/* DESKTOP FILTERS */}
+        <Col xs={0} md={6}>
+          {FilterContent}
         </Col>
 
-        {/* CATALOG */}
-        <Col span={18}>
-          <Row gutter={24}>
+        {/* CARS */}
+        <Col xs={24} md={18}>
+          <Row gutter={[16, 16]}>
             {carsToShow.map((car) => (
-              <Col span={8} key={car.id}>
+              <Col xs={24} sm={12} lg={8} key={car.id}>
                 <Card
-                  style={{
-                    background: "#fafafa",
-                    border: "1px solid #eee",
-                    borderRadius: 12,
-                    overflow: "hidden",
-                  }}
+                  className="car-card"
                   hoverable
                   cover={
-                    <div
-                      style={{
-                        height: 180,
-                        background: "#f0f0f0",
-                        borderBottom: "3px solid #ccc",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        overflow: "hidden",
-                      }}
-                    >
+                    <div className="car-image">
                       <img
                         src={car.image || "/cars/fallback.png"}
                         alt={car.model}
-                        onError={(e) =>
-                          (e.currentTarget.src = "/cars/fallback.png")
-                        }
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                        }}
                       />
                     </div>
                   }
@@ -179,28 +145,14 @@ export default function CatalogPage() {
                   <Title level={4}>
                     {car.brand} {car.model}
                   </Title>
-                  <Paragraph style={{ color: "#666" }}>{car.year}</Paragraph>
-                  <Paragraph
-                    style={{
-                      color: "#444",
-                      fontSize: 20,
-                      fontWeight: 600,
-                    }}
-                  >
+
+                  <Paragraph>{car.year}</Paragraph>
+
+                  <Paragraph className="price">
                     {car.price.toLocaleString()} €
                   </Paragraph>
 
-                  <Button
-                    block
-                    style={{
-                      background: "#444",
-                      border: "none",
-                      marginTop: 10,
-                      height: 40,
-                      fontWeight: 600,
-                      color: "#fff",
-                    }}
-                  >
+                  <Button block className="btn-primary">
                     Reservar
                   </Button>
                 </Card>
@@ -208,17 +160,120 @@ export default function CatalogPage() {
             ))}
           </Row>
 
-          {/* PAGINATION */}
-          <div style={{ marginTop: 40, textAlign: "center" }}>
+          <div className="pagination">
             <Pagination
               current={currentPage}
               pageSize={pageSize}
               total={filtered.length}
-              onChange={(page) => setCurrentPage(page)}
+              onChange={(p) => setCurrentPage(p)}
             />
           </div>
         </Col>
       </Row>
+
+      {/* MOBILE FILTER DRAWER */}
+      <Drawer
+        open={filterOpen}
+        onClose={() => setFilterOpen(false)}
+        placement="left"
+      >
+        {FilterContent}
+      </Drawer>
+
+      {/* ================= STYLES ================= */}
+      <style>
+        {`
+.catalog-page {
+  padding: 60px 40px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .catalog-page {
+    padding: 20px 12px; /* FIX */
+  }
+}
+
+/* HEADER */
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.catalog-title {
+  font-size: 42px !important;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .catalog-title {
+    font-size: 24px !important;
+  }
+}
+
+/* FILTER */
+.filter-card {
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.filter-item {
+  margin-bottom: 16px;
+}
+
+.filter-control {
+  width: 100%;
+  margin-top: 5px;
+}
+
+/* CAR */
+.car-card {
+  background: #fafafa;
+  border-radius: 12px;
+}
+
+.car-image {
+  height: 180px;
+  overflow: hidden;
+}
+
+.car-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #444 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* PAGINATION */
+.pagination {
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* MOBILE FILTER BUTTON */
+.mobile-filter-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-filter-btn {
+    display: block;
+  }
+}
+        `}
+      </style>
     </div>
   );
 }

@@ -11,37 +11,105 @@ export default function PopularCars() {
   ];
 
   return (
-    <div style={{ padding: "80px 40px", background: "#fff" }}>
-      <Title level={2} style={{ fontSize: 36 }}>Coches populares</Title>
+    <div className="cars-section">
+      <Title className="cars-title">Coches populares</Title>
 
-      <Row gutter={40} style={{ marginTop: 40 }}>
+      <Row gutter={[20, 20]} className="cars-row">
         {cars.map((car) => (
-          <Col span={6} key={car.name}>
-            <Card
-              cover={<div style={{ height: 180, background: "#eee" }} />}
-              style={{
-                borderRadius: 12,
-                boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-              }}
-            >
-              <Title level={4}>{car.name}</Title>
-              <p>{car.year}</p>
-              <p style={{ fontWeight: 600 }}>{car.price}</p>
+          <Col xs={24} sm={12} lg={6} key={car.name}>
+            <Card className="car-card" cover={<div className="car-image" />}>
+              <Title level={4} className="car-name">
+                {car.name}
+              </Title>
 
-              <Button
-                size="large"
-                style={{
-                  background: "#ff1a1a",
-                  border: "none",
-                  color: "white",
-                }}
-              >
-                Más detalles
-              </Button>
+              <p className="car-year">{car.year}</p>
+
+              <p className="car-price">{car.price}</p>
+
+              <Button className="car-btn">Más detalles</Button>
             </Card>
           </Col>
         ))}
       </Row>
+
+      {/* ================= STYLES ================= */}
+      <style>
+        {`
+/* ================= SECTION ================= */
+
+.cars-section {
+  padding: 80px 40px;
+  background: #fff;
+}
+
+/* ➕ ADD mobile fix */
+@media (max-width: 768px) {
+  .cars-section {
+    padding: 40px 16px; /* ✅ FIX */
+  }
+}
+
+/* ================= TITLE ================= */
+
+.cars-title {
+  font-size: 36px !important;
+}
+
+/* ➕ ADD */
+@media (max-width: 768px) {
+  .cars-title {
+    font-size: 24px !important;
+    text-align: center;
+  }
+}
+
+/* ================= CARD ================= */
+
+.car-card {
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  height: 100%;
+}
+
+/* ================= IMAGE ================= */
+
+.car-image {
+  height: 180px;
+  background: #eee;
+}
+
+/* ================= TEXT ================= */
+
+.car-name {
+  margin-bottom: 6px !important;
+}
+
+.car-year {
+  margin: 0;
+  color: #666;
+}
+
+.car-price {
+  font-weight: 600;
+}
+
+/* ================= BUTTON ================= */
+
+.car-btn {
+  background: #ff1a1a !important;
+  border: none !important;
+  color: #fff !important;
+  margin-top: 10px;
+}
+
+/* ➕ ADD mobile button fix */
+@media (max-width: 768px) {
+  .car-btn {
+    width: 100%; /* ✅ FIX */
+  }
+}
+        `}
+      </style>
     </div>
   );
 }

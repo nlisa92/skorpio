@@ -1,10 +1,43 @@
 .hero-section {
-  background:
-    url("/images/hero/hero-bg.png") center/cover no-repeat,
-    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55));
+  position: relative;
+  background: url("/images/hero/hero-bg.png") center/cover no-repeat;
   padding: 140px 40px;
 }
 
+/* ➕ overlay отдельным слоем (ЛУЧШЕ чем gradient в background) */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+
+/* контент поверх overlay */
 .hero-content {
+  position: relative;
+  z-index: 1;
   max-width: 700px;
+}
+
+/* ================= MOBILE FIX ================= */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 16px; /* ✅ FIX */
+    min-height: 100vh; /* ➕ ADD */
+    display: flex; /* ➕ ADD */
+    align-items: center; /* ➕ ADD */
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center; /* ➕ ADD */
+  }
+}
+
+/* ================= SMALL PHONES ================= */
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 60px 12px; /* ✅ FIX */
+  }
 }

@@ -8,107 +8,156 @@ import {
 const { Title, Paragraph } = Typography;
 
 export default function ServicesPage() {
+  const services = [
+    {
+      icon: <CarOutlined />,
+      title: "Importación y venta",
+      text: "Importación de coches desde la UE y venta en España. Listos para matricular.",
+    },
+    {
+      icon: <ShoppingOutlined />,
+      title: "Importación por encargo",
+      text: "Buscamos el coche ideal, lo revisamos y lo entregamos matriculado.",
+    },
+    {
+      icon: <DollarOutlined />,
+      title: "Inversiones en automóviles",
+      text: "Conduce, participa en beneficios y optimiza la rentabilidad del vehículo.",
+    },
+  ];
+
   return (
-    <div style={{ padding: "60px 40px" }}>
-      {/* SEO */}
-      <Title style={{ fontSize: 42, marginBottom: 10 }}>
-        Nuestros servicios
-      </Title>
-      <Paragraph style={{ maxWidth: 700, fontSize: 18, color: "#555" }}>
-        Importación de vehículos desde la Unión Europea, búsqueda personalizada
-        y oportunidades de inversión con ventajas fiscales.
+    <div className="services-page">
+      {/* HERO */}
+      <Title className="services-title">Nuestros servicios</Title>
+
+      <Paragraph className="services-subtitle">
+        Importación de vehículos desde la UE, búsqueda personalizada e
+        inversión.
       </Paragraph>
 
-      {/* 3 карточки услуг */}
-      <Row gutter={32} style={{ marginTop: 40 }}>
-        <Col span={8}>
-          <Card
-            style={{
-              padding: 20,
-              borderRadius: 12,
-              textAlign: "center",
-              boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-            }}
-          >
-            <CarOutlined style={{ fontSize: 40, color: "#ff1a1a" }} />
-            <Title level={3} style={{ marginTop: 20 }}>
-              Importación y venta
-            </Title>
-            <Paragraph>
-              Importación general de coches procedentes de la Unión Europea y
-              venta en España. Vehículos listos para matricular y usar.
-            </Paragraph>
-          </Card>
-        </Col>
+      {/* CARDS */}
+      <Row gutter={[24, 24]} className="services-grid">
+        {services.map((s) => (
+          <Col xs={24} md={8} key={s.title}>
+            <Card className="service-card">
+              <div className="icon">{s.icon}</div>
 
-        <Col span={8}>
-          <Card
-            style={{
-              padding: 20,
-              borderRadius: 12,
-              textAlign: "center",
-              boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-            }}
-          >
-            <ShoppingOutlined style={{ fontSize: 40, color: "#ff1a1a" }} />
-            <Title level={3} style={{ marginTop: 20 }}>
-              Importación por encargo
-            </Title>
-            <Paragraph>
-              Dinos qué marca y modelo deseas. Lo importamos, lo revisamos y te
-              lo entregamos matriculado a tu nombre en España.
-            </Paragraph>
-          </Card>
-        </Col>
+              <Title level={3} className="service-card-title">
+                {s.title}
+              </Title>
 
-        <Col span={8}>
-          <Card
-            style={{
-              padding: 20,
-              borderRadius: 12,
-              textAlign: "center",
-              boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-            }}
-          >
-            <DollarOutlined style={{ fontSize: 40, color: "#ff1a1a" }} />
-            <Title level={3} style={{ marginTop: 20 }}>
-              Inversiones en automóviles
-            </Title>
-            <Paragraph>
-              Conduce el coche de tus sueños durante 6 meses y participa al 50%
-              en la plusvalía. Inversión deducible al 100%.
-            </Paragraph>
-          </Card>
-        </Col>
+              <Paragraph className="service-text">{s.text}</Paragraph>
+            </Card>
+          </Col>
+        ))}
       </Row>
 
-      {/* Inversiones */}
-      <section style={{ marginTop: 80 }}>
+      {/* INVEST SECTION */}
+      <section className="investment">
         <Title level={3}>Inversiones en automóviles</Title>
 
         <Paragraph>
-          Invierte en el coche de tus sueños. Lo importamos, lo conduces hasta 6
-          meses y luego lo vendemos. Recuperas tu capital más el 50% de la
-          ganancia si hay plusvalía.
+          Invierte en el coche de tus sueños. Lo importamos, lo usas y luego se
+          vende.
         </Paragraph>
 
         <Paragraph>
-          Si no hay ganancia, solo se pagan honorarios. No necesitas transferir
-          el coche a tu nombre.
+          Recuperas capital + 50% beneficio si existe plusvalía.
         </Paragraph>
 
         <Paragraph>
-          <strong>Ventaja fiscal:</strong> se considera inversión en capital
-          mobiliario, deducible al 100%. Minimiza depreciación y maximiza
-          rentabilidad.
+          <strong>Ventaja fiscal:</strong> inversión deducible al 100%.
         </Paragraph>
 
-        <Card style={{ marginTop: 20 }}>
-          <Paragraph>
-            Casos reales, contratos y detalles del esquema — en desarrollo.
-          </Paragraph>
+        <Card className="info-card">
+          Casos reales y contratos — en desarrollo.
         </Card>
       </section>
+
+      {/* ================= STYLE ================= */}
+      <style>
+        {`
+.services-page {
+  padding: 60px 40px;
+}
+
+/* MOBILE padding fix */
+@media (max-width: 768px) {
+  .services-page {
+    padding: 30px 16px;
+  }
+}
+
+/* ================= TITLE ================= */
+
+.services-title {
+  font-size: 42px !important;
+  margin-bottom: 10px;
+}
+
+.services-subtitle {
+  font-size: 18px;
+  max-width: 700px;
+  color: #555;
+}
+
+/* MOBILE typography fix */
+@media (max-width: 768px) {
+  .services-title {
+    font-size: 26px !important;
+  }
+
+  .services-subtitle {
+    font-size: 15px;
+  }
+}
+
+/* ================= CARD ================= */
+
+.service-card {
+  padding: 24px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  height: 100%;
+}
+
+/* ICON */
+.icon {
+  font-size: 40px;
+  color: #ff1a1a;
+  margin-bottom: 10px;
+}
+
+/* TITLE */
+.service-card-title {
+  margin-top: 10px !important;
+}
+
+/* TEXT */
+.service-text {
+  color: #555;
+}
+
+/* ================= INVEST ================= */
+
+.investment {
+  margin-top: 80px;
+}
+
+.info-card {
+  margin-top: 20px;
+}
+
+/* MOBILE spacing */
+@media (max-width: 768px) {
+  .investment {
+    margin-top: 40px;
+  }
+}
+        `}
+      </style>
     </div>
   );
 }

@@ -10,51 +10,50 @@ import Reveal from "../components/common/Reveal";
 
 export default function HomePage() {
   return (
-    <div style={{ overflowX: "hidden" }}>
-      {/* HERO */}
-      <section>
+    <div className="home-page">
+      <section className="block">
         <Reveal>
           <Hero />
         </Reveal>
       </section>
 
-      <section>
+      <section className="block">
         <Reveal delay={100}>
           <AboutBlock />
         </Reveal>
       </section>
 
-      <section>
+      <section className="block">
         <Reveal delay={200}>
           <BusinessDirections />
         </Reveal>
       </section>
 
-      <section>
+      <section className="block">
         <Reveal delay={300}>
           <HowItWorks />
         </Reveal>
       </section>
 
-      <section>
+      <section className="block">
         <Reveal delay={400}>
           <PopularCars />
         </Reveal>
       </section>
 
-      <section>
+      <section className="block">
         <Reveal delay={500}>
           <Reviews />
         </Reveal>
       </section>
 
-      <section>
+      <section className="block">
         <Reveal delay={600}>
           <TrustBlock />
         </Reveal>
       </section>
 
-      <section>
+      <section className="block">
         <Reveal delay={700}>
           <FAQ />
         </Reveal>
@@ -62,12 +61,21 @@ export default function HomePage() {
 
       <style>
         {`
-          @media (max-width: 768px) {
-            section {
-              padding-left: 20px !important;
-              padding-right: 20px !important;
-            }
-          }
+.home-page {
+  overflow-x: hidden;
+}
+
+/* DEFAULT spacing system */
+.block {
+  padding: 80px 40px;
+}
+
+/* MOBILE spacing system */
+@media (max-width: 768px) {
+  .block {
+    padding: 40px 16px;
+  }
+}
         `}
       </style>
     </div>

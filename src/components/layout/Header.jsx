@@ -37,37 +37,16 @@ export default function HeaderBar() {
           height: 80,
           borderBottom: "1px solid #ddd",
         }}
+        className="main-header" // ➕ ADD
       >
         {/* LOGO */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            marginRight: 40,
-            whiteSpace: "nowrap",
-          }}
-        >
+        <div className="logo-block">
           <img
             src={`${import.meta.env.BASE_URL}logo/logo.png`}
             alt="Skorpio Importwagen"
-            style={{
-              height: 64,
-              width: "auto",
-              objectFit: "contain",
-            }}
           />
 
-          <span
-            style={{
-              color: "#000",
-              fontSize: 22,
-              fontWeight: 700,
-              letterSpacing: 0.5,
-            }}
-          >
-            Skorpio Importwagen
-          </span>
+          <span>Skorpio Importwagen</span>
         </div>
 
         {/* DESKTOP MENU */}
@@ -76,68 +55,39 @@ export default function HeaderBar() {
             mode="horizontal"
             selectedKeys={[location.pathname]}
             items={menuItems}
+            className="main-menu"
             style={{
               background: "transparent",
               borderBottom: "none",
-              color: "#000",
             }}
-            theme="light"
-            className="main-menu"
           />
         </div>
 
-        {/* CONTACTS + LANGUAGE */}
-        <div
-          className="desktop-contacts"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 20,
-          }}
-        >
+        {/* CONTACTS */}
+        <div className="desktop-contacts">
           <LanguageSwitcher />
 
-          <div
-            style={{
-              color: "#333",
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-            }}
-          >
-            <MailOutlined style={{ color: "#ff1a1a" }} />
+          <div className="email">
+            <MailOutlined />
             info@skorpio.es
           </div>
 
-          <Button
-            size="large"
-            style={{
-              background: "#e5e5e5",
-              border: "none",
-              color: "#000",
-              fontWeight: 600,
-              padding: "0 20px",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-          >
-            <PhoneOutlined style={{ color: "#ff1a1a" }} />
+          <Button className="phone-btn" size="large">
+            <PhoneOutlined />
             +34 678 123 456
           </Button>
         </div>
 
-        {/* MOBILE BURGER */}
+        {/* BURGER */}
         <Button
           className="mobile-burger"
           type="text"
-          icon={<MenuOutlined style={{ color: "#000", fontSize: 26 }} />}
+          icon={<MenuOutlined />}
           onClick={() => setOpen(true)}
-          style={{ display: "none" }}
         />
       </Header>
 
-      {/* MOBILE MENU */}
+      {/* DRAWER */}
       <Drawer
         title="Menú"
         placement="right"
@@ -149,34 +99,21 @@ export default function HeaderBar() {
           mode="inline"
           selectedKeys={[location.pathname]}
           items={menuItems}
-          style={{ borderRight: "none" }}
           onClick={() => setOpen(false)}
         />
 
         <div style={{ padding: 20 }}>
           <LanguageSwitcher dark />
 
-          <div
-            style={{ marginTop: 20, marginBottom: 10, display: "flex", gap: 8 }}
-          >
-            <PhoneOutlined style={{ color: "#ff1a1a" }} /> +34 678 123 456
+          <div className="drawer-contact">
+            <PhoneOutlined /> +34 678 123 456
           </div>
 
-          <div style={{ marginBottom: 20, display: "flex", gap: 8 }}>
-            <MailOutlined style={{ color: "#ff1a1a" }} /> info@skorpio.es
+          <div className="drawer-contact">
+            <MailOutlined /> info@skorpio.es
           </div>
 
-          <Button
-            block
-            size="large"
-            style={{
-              background: "#e5e5e5",
-              border: "none",
-              color: "#000",
-              fontWeight: 600,
-              height: 48,
-            }}
-          >
+          <Button block size="large" className="drawer-btn">
             {t("header.consultation_request")}
           </Button>
         </div>
@@ -185,46 +122,132 @@ export default function HeaderBar() {
       {/* STYLES */}
       <style>
         {`
-          .main-menu .ant-menu-item::after { border-bottom: none !important; }
-          .main-menu .ant-menu-item:hover::after { border-bottom: none !important; }
-          .main-menu .ant-menu-item:hover { background: transparent !important; }
+/* ================= HEADER ================= */
 
-        /* 🔥 Красная подсветка пунктов меню */
-          .main-menu .ant-menu-item a {
-          color: #000 !important;
-          transition: 0.2s;
-        }
+.main-header {
+  padding: 0 40px;
+}
 
-          .main-menu .ant-menu-item:hover a {
-            color: #ff1a1a !important;
-          }
+/* ➕ ADD: адаптация header */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 0 16px; /* ✅ FIX */
+    height: 64px; /* ✅ FIX */
+  }
+}
 
-          .main-menu .ant-menu-item-selected a {
-            color: #ff1a1a !important;
-          }
+/* ================= LOGO ================= */
 
-        /* Убираем синий фон Ant Design */
-          .ant-menu-light .ant-menu-item-selected {
-            background: transparent !important;
-          }
-          .mobile-burger {
-            display: none;
-            height: 80px; /* как высота Header */
-            align-items: center;
-            justify-content: center;
-            padding: 0 12px !important;
-          }
+.logo-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 40px;
+  white-space: nowrap;
+}
 
-          @media (max-width: 992px) {
-            .desktop-menu { display: none; }
-            .desktop-contacts { display: none; }
+.logo-block img {
+  height: 64px;
+}
 
-          .mobile-burger {
-            display: flex !important;
-            margin-left: auto;
-            }
-          }
+/* ➕ ADD: адаптация логотипа */
+@media (max-width: 768px) {
+  .logo-block {
+    gap: 6px;
+    margin-right: 10px;
+  }
 
+  .logo-block img {
+    height: 40px; /* ✅ FIX */
+  }
+
+  .logo-block span {
+    font-size: 16px; /* ✅ FIX */
+  }
+}
+
+/* ================= CONTACTS ================= */
+
+.desktop-contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.email {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.phone-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #e5e5e5;
+  border: none;
+  font-weight: 600;
+}
+
+/* ================= BURGER ================= */
+
+.mobile-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= MENU STYLES ================= */
+
+.main-menu .ant-menu-item::after { border-bottom: none !important; }
+.main-menu .ant-menu-item:hover { background: transparent !important; }
+
+.main-menu .ant-menu-item a {
+  color: #000 !important;
+}
+
+.main-menu .ant-menu-item:hover a,
+.main-menu .ant-menu-item-selected a {
+  color: #ff1a1a !important;
+}
+
+.ant-menu-light .ant-menu-item-selected {
+  background: transparent !important;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 992px) {
+  .desktop-menu { display: none; }
+  .desktop-contacts { display: none; }
+
+  .mobile-burger {
+    display: flex;
+    margin-left: auto;
+  }
+}
+
+/* ➕ ADD: ещё более узкие экраны */
+@media (max-width: 480px) {
+  .logo-block span {
+    display: none; /* ✅ FIX: чтобы не ломало header */
+  }
+}
+
+/* ================= DRAWER ================= */
+
+.drawer-contact {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.drawer-btn {
+  background: #e5e5e5;
+  border: none;
+  font-weight: 600;
+  height: 48px;
+}
         `}
       </style>
     </>

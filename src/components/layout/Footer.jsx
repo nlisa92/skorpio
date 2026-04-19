@@ -19,95 +19,78 @@ export default function FooterBar() {
           padding: "80px 40px",
           borderTop: "1px solid #ddd",
         }}
+        className="footer" // ➕ ADD
       >
         <Row gutter={[40, 40]} className="footer-grid">
-          {/* LOGOTIPO */}
+          {/* LOGO */}
           <Col xs={24} sm={12} md={6}>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div className="footer-logo">
               <img
                 src={`${import.meta.env.BASE_URL}logo/logo.png`}
                 alt="Skorpio Importwagen"
-                style={{
-                  height: 60,
-                  width: "auto",
-                  objectFit: "contain",
-                }}
               />
-              <Title
-                level={3}
-                style={{
-                  color: "#000",
-                  marginBottom: 0,
-                  fontWeight: 800,
-                  letterSpacing: 0.5,
-                }}
-                className="footer-title"
-              >
+
+              <Title level={3} className="footer-title">
                 Skorpio Importwagen
               </Title>
             </div>
 
-            <Paragraph style={{ color: "#444", fontSize: 16, marginTop: 20 }}>
+            <Paragraph className="footer-desc">
               Importación de vehículos desde la UE a España
             </Paragraph>
           </Col>
 
-          {/* MENÚ */}
+          {/* MENU */}
           <Col xs={24} sm={12} md={6}>
-            <Title
-              level={4}
-              style={{ color: "#000", fontWeight: 700 }}
-              className="footer-title"
-            >
+            <Title level={4} className="footer-title">
               Navegación
             </Title>
 
             <Paragraph>
-              <a className="footer-link" href="/">Inicio</a>
+              <a className="footer-link" href="/">
+                Inicio
+              </a>
             </Paragraph>
             <Paragraph>
-              <a className="footer-link" href="/services">Nuestros servicios</a>
+              <a className="footer-link" href="/services">
+                Servicios
+              </a>
             </Paragraph>
             <Paragraph>
-              <a className="footer-link" href="/catalog">Catálogo de coches</a>
+              <a className="footer-link" href="/catalog">
+                Catálogo
+              </a>
             </Paragraph>
             <Paragraph>
-              <a className="footer-link" href="/about">Sobre nosotros</a>
+              <a className="footer-link" href="/about">
+                Sobre nosotros
+              </a>
             </Paragraph>
             <Paragraph>
-              <a className="footer-link" href="/contacts">Contactos</a>
+              <a className="footer-link" href="/contacts">
+                Contactos
+              </a>
             </Paragraph>
           </Col>
 
-          {/* CONTACTOS */}
+          {/* CONTACTS */}
           <Col xs={24} sm={12} md={6}>
-            <Title
-              level={4}
-              style={{ color: "#000", fontWeight: 700 }}
-              className="footer-title"
-            >
+            <Title level={4} className="footer-title">
               Contactos
             </Title>
 
-            <Paragraph style={{ color: "#444" }}>+34 678 123 456</Paragraph>
-            <Paragraph style={{ color: "#444" }}>info@skorpio.es</Paragraph>
-            <Paragraph style={{ color: "#444" }}>España, Málaga</Paragraph>
+            <Paragraph className="footer-text">+34 678 123 456</Paragraph>
+            <Paragraph className="footer-text">info@skorpio.es</Paragraph>
+            <Paragraph className="footer-text">España, Málaga</Paragraph>
           </Col>
 
-          {/* REDES SOCIALES */}
-          <Col xs={24} sm={12} md={6} style={{ textAlign: "left" }}>
-            <Title
-              level={4}
-              style={{ color: "#000", fontWeight: 700 }}
-              className="footer-title"
-            >
-              Estamos en redes sociales
+          {/* SOCIAL */}
+          <Col xs={24} sm={12} md={6}>
+            <Title level={4} className="footer-title">
+              Redes sociales
             </Title>
 
-            <div
-              style={{ fontSize: 28, color: "#000" }}
-              className="footer-socials"
-            >
+            <div className="footer-socials">
               <FacebookFilled className="footer-icon" />
               <InstagramFilled className="footer-icon" />
               <TwitterCircleFilled className="footer-icon" />
@@ -116,52 +99,133 @@ export default function FooterBar() {
           </Col>
         </Row>
 
-        {/* LÍNEA INFERIOR */}
-        <div
-          style={{
-            marginTop: 60,
-            textAlign: "center",
-            color: "#777",
-            fontSize: 14,
-          }}
-        >
-          © {new Date().getFullYear()} Skorpio Importwagen. Todos los derechos reservados.
+        {/* BOTTOM */}
+        <div className="footer-bottom">
+          © {new Date().getFullYear()} Skorpio Importwagen. Todos los derechos
+          reservados.
         </div>
       </Footer>
 
-      {/* ESTILOS */}
+      {/* ================= STYLES ================= */}
       <style>
         {`
-          .footer-link {
-            color: #444;
-            font-weight: 500;
-            transition: 0.2s;
-          }
-          .footer-link:hover {
-            color: #ff1a1a;
-          }
+/* ================= FOOTER BASE ================= */
 
-          .footer-icon {
-            margin-right: 20px;
-            cursor: pointer;
-            transition: 0.2s;
-          }
-          .footer-icon:hover {
-            color: #ff1a1a;
-          }
+.footer {
+  padding: 80px 40px;
+}
 
-          @media (max-width: 768px) {
-            .footer-title {
-              text-align: center !important;
-            }
-            .footer-grid {
-              text-align: center;
-            }
-            .footer-socials {
-              justify-content: center;
-              display: flex;
-            }
-          }
+/* ➕ ADD: mobile padding fix */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 16px; /* ✅ FIX */
+  }
+}
+
+/* ================= LOGO ================= */
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo img {
+  height: 60px;
+}
+
+/* ➕ ADD: mobile logo fix */
+@media (max-width: 768px) {
+  .footer-logo {
+    flex-direction: column; /* ✅ FIX */
+    text-align: center;
+    gap: 8px;
+  }
+
+  .footer-logo img {
+    height: 48px; /* ➕ ADD */
+  }
+}
+
+/* ================= TEXT ================= */
+
+.footer-desc,
+.footer-text {
+  color: #444;
+  font-size: 16px;
+}
+
+/* ➕ ADD: smaller text on mobile */
+@media (max-width: 768px) {
+  .footer-desc,
+  .footer-text {
+    font-size: 14px; /* ✅ FIX */
+    text-align: center;
+  }
+}
+
+/* ================= TITLES ================= */
+
+.footer-title {
+  color: #000;
+  font-weight: 700;
+}
+
+/* ================= LINKS ================= */
+
+.footer-link {
+  color: #444;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.footer-link:hover {
+  color: #ff1a1a;
+}
+
+/* ================= SOCIALS ================= */
+
+.footer-socials {
+  font-size: 28px;
+  color: #000;
+}
+
+/* ➕ ADD: mobile socials fix */
+@media (max-width: 768px) {
+  .footer-socials {
+    display: flex;
+    justify-content: center;
+    font-size: 24px; /* ✅ FIX */
+  }
+}
+
+/* ================= ICONS ================= */
+
+.footer-icon {
+  margin-right: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.footer-icon:hover {
+  color: #ff1a1a;
+}
+
+/* ================= BOTTOM ================= */
+
+.footer-bottom {
+  margin-top: 60px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+/* ➕ ADD: spacing fix */
+@media (max-width: 768px) {
+  .footer-bottom {
+    margin-top: 30px; /* ✅ FIX */
+  }
+}
         `}
       </style>
     </>

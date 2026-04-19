@@ -26,58 +26,129 @@ export default function Reviews() {
   ];
 
   return (
-    <div style={{ padding: "80px 40px", background: "#f8f8f8" }}>
-      <Title level={2} style={{ fontSize: 36, textAlign: "center" }}>
-        Opiniones de clientes
-      </Title>
+    <div className="reviews-section">
+      <Title className="reviews-title">Opiniones de clientes</Title>
 
-      <Carousel autoplay dots style={{ marginTop: 40 }}>
+      <Carousel autoplay dots className="reviews-carousel">
         {reviews.map((r) => (
-          <div key={r.name}>
-            <Row justify="center">
-              <Col span={12}>
-                <Card
-                  style={{
-                    padding: 30,
-                    borderRadius: 12,
-                    boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-                    background: "white",
-                    textAlign: "center",
-                  }}
-                >
-                  {/* Аватар */}
-                  <Avatar
-                    size={80}
-                    src={r.avatar}
-                    icon={<UserOutlined />}
-                    style={{ marginBottom: 20 }}
-                  />
+          <div key={r.name} className="reviews-slide">
+            <Card className="review-card">
+              <Avatar
+                size={80}
+                src={r.avatar}
+                icon={<UserOutlined />}
+                className="review-avatar"
+              />
 
-                  {/* Имя */}
-                  <Title level={4} style={{ marginBottom: 10 }}>
-                    {r.name}
-                  </Title>
+              <Title level={4} className="review-name">
+                {r.name}
+              </Title>
 
-                  {/* Рейтинг */}
-                  <div style={{ marginBottom: 15 }}>
-                    {Array.from({ length: r.rating }).map((_, i) => (
-                      <StarFilled
-                        key={i}
-                        style={{ color: "#ff1a1a", fontSize: 22, marginRight: 4 }}
-                      />
-                    ))}
-                  </div>
+              <div className="review-rating">
+                {Array.from({ length: r.rating }).map((_, i) => (
+                  <StarFilled key={i} className="star" />
+                ))}
+              </div>
 
-                  {/* Текст */}
-                  <Paragraph style={{ fontSize: 16, color: "#555" }}>
-                    {r.text}
-                  </Paragraph>
-                </Card>
-              </Col>
-            </Row>
+              <Paragraph className="review-text">{r.text}</Paragraph>
+            </Card>
           </div>
         ))}
       </Carousel>
+
+      {/* ================= STYLES ================= */}
+      <style>
+        {`
+/* ================= SECTION ================= */
+
+.reviews-section {
+  padding: 80px 40px;
+  background: #f8f8f8;
+}
+
+/* ➕ ADD mobile fix */
+@media (max-width: 768px) {
+  .reviews-section {
+    padding: 40px 16px; /* ✅ FIX */
+  }
+}
+
+/* ================= TITLE ================= */
+
+.reviews-title {
+  font-size: 36px !important;
+  text-align: center;
+}
+
+/* ➕ ADD */
+@media (max-width: 768px) {
+  .reviews-title {
+    font-size: 24px !important; /* ✅ FIX */
+  }
+}
+
+/* ================= SLIDE ================= */
+
+.reviews-slide {
+  display: flex;
+  justify-content: center;
+}
+
+/* ================= CARD ================= */
+
+.review-card {
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  background: white;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* ================= AVATAR ================= */
+
+.review-avatar {
+  margin-bottom: 20px;
+}
+
+/* ================= NAME ================= */
+
+.review-name {
+  margin-bottom: 10px !important;
+}
+
+/* ================= RATING ================= */
+
+.review-rating {
+  margin-bottom: 15px;
+}
+
+.star {
+  color: #ff1a1a;
+  font-size: 20px;
+  margin-right: 4px;
+}
+
+/* ================= TEXT ================= */
+
+.review-text {
+  font-size: 16px;
+  color: #555;
+}
+
+/* ➕ ADD mobile fix */
+@media (max-width: 768px) {
+  .review-text {
+    font-size: 14px;
+  }
+
+  .review-card {
+    padding: 20px; /* ✅ FIX */
+  }
+}
+        `}
+      </style>
     </div>
   );
 }

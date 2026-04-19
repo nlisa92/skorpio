@@ -6,7 +6,10 @@ const { Title } = Typography;
 export default function HowItWorks() {
   return (
     <div className="how-section">
-      <Title className="how-title">Cómo funciona</Title>
+
+      <Title className="how-title">
+        Cómo funciona
+      </Title>
 
       <Steps
         className="how-steps"
@@ -18,6 +21,7 @@ export default function HowItWorks() {
           { title: "Entrega o venta" },
         ]}
       />
+
     </div>
   );
 }
