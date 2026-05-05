@@ -833,42 +833,53 @@ html body {
   }
 }
 
-/* ================= HARD FIX SLICK ================= */
+/* ================= CAROUSEL FIX (КЛЮЧЕВОЕ) ================= */
 
+.reviews-carousel {
+  overflow: hidden;
+}
+
+/* slick reset — убираем боковые смещения */
 .reviews-carousel .slick-list {
   overflow: hidden !important;
+  padding: 0 !important;
 }
 
 .reviews-carousel .slick-track {
-  display: block !important; /* 🔥 убираем flex */
+  display: flex !important;
+  align-items: stretch;
 }
 
 .reviews-carousel .slick-slide {
-  width: 100% !important;
-  float: left;
+  display: flex !important;
+  justify-content: center;
 }
 
+/* центрирование контейнера */
 .reviews-carousel .slick-slide > div {
   width: 100%;
+  display: flex !important;
+  justify-content: center;
 }
 
 /* ================= SLIDE ================= */
 
 .reviews-slide {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /* ================= CARD ================= */
 
 .review-card {
-  margin: 0 auto; /* 🔥 центрирование */
+  width: min(620px, 100%);
+  margin: 0 auto;
   padding: 34px;
   border-radius: 16px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.08);
   background: white;
   text-align: center;
-  max-width: 620px;
-  width: 100%;
   transition: 0.3s;
 }
 
@@ -876,53 +887,15 @@ html body {
   transform: translateY(-4px);
 }
 
-/* ================= AVATAR ================= */
-
-.review-avatar {
-  margin-bottom: 16px;
-}
-
-/* ================= NAME ================= */
-
-.review-name {
-  margin-bottom: 4px !important;
-}
-
-/* ================= META ================= */
-
-.review-meta {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 12px;
-}
-
-/* ================= RATING ================= */
-
-.review-rating {
-  margin-bottom: 14px;
-}
-
-.star {
-  color: #ff1a1a;
-  font-size: 20px;
-  margin-right: 4px;
-}
-
-/* ================= TEXT ================= */
-
-.review-text {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.6;
-}
+/* ================= MOBILE FIX ================= */
 
 @media (max-width: 768px) {
-  .review-text {
-    font-size: 14px;
+  .review-card {
+    padding: 20px;
   }
 
-  .review-card {
-    padding: 22px;
+  .review-text {
+    font-size: 14px;
   }
 }
       `})]})}var{Title:RI,Paragraph:zI}=$N;function BI(){return(0,$.jsxs)(`div`,{className:`faq-section`,children:[(0,$.jsx)(RI,{level:2,className:`faq-title`,children:`Preguntas frecuentes`}),(0,$.jsx)(zI,{className:`faq-subtitle`,children:`Resolvemos las dudas más comunes sobre importación, garantías e inversión.`}),(0,$.jsxs)(_M,{gutter:[20,20],className:`faq-row`,children:[(0,$.jsx)(bO,{xs:24,md:12,children:(0,$.jsx)(`div`,{className:`faq-box`,children:(0,$.jsx)(Ah,{items:[{key:`1`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(wk,{className:`faq-icon`}),`Plazos de entrega`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Normalmente entre `,(0,$.jsx)(`strong`,{children:`7 y 14 días`}),`, dependiendo del país de origen y la disponibilidad del vehículo.`]})},{key:`2`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(EP,{className:`faq-icon`}),`¿Qué garantías ofrecen?`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Ofrecemos `,(0,$.jsx)(`strong`,{children:`transparencia total`}),`, informes completos del vehículo y seguridad jurídica en toda la operación.`]})}],expandIconPosition:`end`})})}),(0,$.jsx)(bO,{xs:24,md:12,children:(0,$.jsx)(`div`,{className:`faq-box`,children:(0,$.jsx)(Ah,{items:[{key:`3`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(aP,{className:`faq-icon`}),`Comisión`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Trabajamos con una `,(0,$.jsx)(`strong`,{children:`comisión fija`}),` que cubre todo el proceso de importación y entrega en España.`]})},{key:`4`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(RP,{className:`faq-icon`}),`Riesgos de inversión`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Los riesgos son `,(0,$.jsx)(`strong`,{children:`mínimos`}),` gracias a una selección adecuada del vehículo y un análisis previo del mercado.`]})}],expandIconPosition:`end`})})})]}),(0,$.jsxs)(`div`,{className:`faq-cta`,children:[(0,$.jsx)(RI,{level:4,children:`¿Tienes más preguntas?`}),(0,$.jsx)(zI,{children:`Estamos aquí para ayudarte con cualquier duda sobre importación o inversión.`}),(0,$.jsx)(Jw,{className:`faq-btn`,href:`/contactos`,children:`Contáctanos`})]}),(0,$.jsx)(`style`,{children:`
