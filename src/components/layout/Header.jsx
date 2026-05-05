@@ -125,76 +125,42 @@ export default function HeaderBar() {
 /* ================= HEADER ================= */
 
 .main-header {
-  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: clamp(64px, 8vw, 90px);
+  padding: 0 clamp(16px, 4vw, 40px);
+
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
 }
 
-/* ➕ ADD: адаптация header */
-@media (max-width: 768px) {
-  .main-header {
-    padding: 0 16px; /* ✅ FIX */
-    height: 64px; /* ✅ FIX */
-  }
-}
-
-/* ================= LOGO ================= */
+/* ================= LOGO  ================= */
 
 .logo-block {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-right: 40px;
   white-space: nowrap;
 }
 
 .logo-block img {
-  height: 64px;
+  height: clamp(70px, 6vw, 110px); 
+  width: auto;
+  object-fit: contain;
 }
 
-/* ➕ ADD: адаптация логотипа */
-@media (max-width: 768px) {
-  .logo-block {
-    gap: 6px;
-    margin-right: 10px;
-  }
-
-  .logo-block img {
-    height: 40px; /* ✅ FIX */
-  }
-
-  .logo-block span {
-    font-size: 16px; /* ✅ FIX */
-  }
+.logo-block span {
+  font-weight: 700;
+  font-size: clamp(16px, 1.8vw, 22px); 
 }
 
-/* ================= CONTACTS ================= */
+/* ================= MENU ================= */
 
-.desktop-contacts {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.email {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.phone-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #e5e5e5;
-  border: none;
-  font-weight: 600;
-}
-
-/* ================= BURGER ================= */
-
-.mobile-burger {
-  display: none;
-  align-items: center;
-  justify-content: center;
+.main-menu {
+  background: transparent !important;
+  border-bottom: none !important;
 }
 
 /* ================= MENU STYLES ================= */
@@ -215,11 +181,65 @@ export default function HeaderBar() {
   background: transparent !important;
 }
 
-/* ================= MOBILE ================= */
+/* ================= CONTACTS ================= */
+
+.desktop-contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.email {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ================= BUTTON ================= */
+
+.phone-btn.ant-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #e5e5e5;
+  border: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+/* hover */
+.phone-btn.ant-btn:hover {
+  background: #dcdcdc;
+  color: #000;
+  border-color: transparent;
+  box-shadow: none !important;
+}
+
+.phone-btn.ant-btn:focus,
+.phone-btn.ant-btn:active,
+.phone-btn.ant-btn:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(255, 26, 26, 0.35) !important;
+  border-color: #ff1a1a !important;
+}
+
+.phone-btn.ant-btn:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 26, 26, 0.35) !important;
+}
+
+/* ================= BURGER ================= */
+
+.mobile-burger {
+  display: none;
+}
+
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 992px) {
-  .desktop-menu { display: none; }
-  .desktop-contacts { display: none; }
+  .desktop-menu,
+  .desktop-contacts {
+    display: none;
+  }
 
   .mobile-burger {
     display: flex;
@@ -227,10 +247,9 @@ export default function HeaderBar() {
   }
 }
 
-/* ➕ ADD: ещё более узкие экраны */
 @media (max-width: 480px) {
   .logo-block span {
-    display: none; /* ✅ FIX: чтобы не ломало header */
+    display: none;
   }
 }
 

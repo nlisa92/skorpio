@@ -6,10 +6,9 @@
   text-align: center;
 }
 
-/* ➕ ADD mobile padding */
 @media (max-width: 768px) {
   .how-section {
-    padding: 40px 16px; /* ✅ FIX */
+    padding: 40px 16px;
   }
 }
 
@@ -18,33 +17,24 @@
 .how-title {
   text-align: left !important;
   font-size: 38px !important;
-  letter-spacing: 0.5px;
   margin-bottom: 60px !important;
   color: #000;
 }
 
-/* ➕ ADD mobile fix */
 @media (max-width: 768px) {
   .how-title {
-    text-align: center !important; /* ✅ FIX */
+    text-align: center !important;
     font-size: 24px !important;
     margin-bottom: 30px !important;
   }
 }
 
-/* ================= STEPS ================= */
+/* ================= STEPS BASE ================= */
 
 .how-steps .ant-steps-item-title {
   font-size: 18px;
   font-weight: 600;
   color: #000 !important;
-}
-
-/* ➕ ADD mobile fix */
-@media (max-width: 768px) {
-  .how-steps .ant-steps-item-title {
-    font-size: 15px; /* ✅ FIX */
-  }
 }
 
 /* ================= ACTIVE STEP ================= */
@@ -68,27 +58,43 @@
 
 .how-steps .ant-steps-item:hover .ant-steps-item-title {
   color: #ff1a1a !important;
-  transition: 0.2s;
 }
 
-/* ================= PROCESS COLOR OVERRIDE ================= */
-
-.ant-steps-item-process .ant-steps-item-title {
-  color: #ff1a1a !important;
-}
-
-/* ================= 🔥 CRITICAL MOBILE FIX ================= */
+/* ================= 🔥 MOBILE FIX (ВАЖНОЕ) ================= */
 
 @media (max-width: 768px) {
 
-  /* превращаем Steps в вертикальный UX */
+  /* центрируем весь блок */
   .how-steps {
     display: flex;
-    flex-direction: column; /* ✅ FIX */
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
   }
 
+  /* каждый step как карточка */
   .how-steps .ant-steps-item {
-    text-align: left;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  /* убираем "линейный" layout antd */
+  .how-steps .ant-steps-item-tail {
+    display: none !important;
+  }
+
+  /* центрируем иконку */
+  .how-steps .ant-steps-item-icon {
+    margin: 0 auto 10px auto;
+  }
+
+  /* текст тоже центр */
+  .how-steps .ant-steps-item-content {
+    text-align: center;
+  }
+
+  .how-steps .ant-steps-item-title {
+    font-size: 15px;
   }
 }

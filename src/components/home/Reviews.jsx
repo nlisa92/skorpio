@@ -1,4 +1,4 @@
-import { Card, Row, Col, Typography, Avatar, Carousel } from "antd";
+import { Card, Typography, Avatar, Carousel } from "antd";
 import { StarFilled, UserOutlined } from "@ant-design/icons";
 
 const { Title, Paragraph } = Typography;
@@ -7,19 +7,25 @@ export default function Reviews() {
   const reviews = [
     {
       name: "Anna M.",
-      text: "¡Servicio excelente! Trajeron el coche rápido y sin complicaciones.",
+      city: "Málaga",
+      type: "Compradora",
+      text: "Servicio impecable. El coche llegó rápido y exactamente como se describía.",
       rating: 5,
       avatar: "https://randomuser.me/api/portraits/women/44.jpg",
     },
     {
       name: "Igor K.",
-      text: "Enfoque profesional, muy satisfecho con la compra.",
+      city: "Madrid",
+      type: "Inversor",
+      text: "Proceso profesional y transparente. Muy satisfecho con el resultado.",
       rating: 5,
       avatar: "https://randomuser.me/api/portraits/men/32.jpg",
     },
     {
       name: "Maria L.",
-      text: "Proceso transparente y comunicación perfecta. ¡Muy recomendable!",
+      city: "Valencia",
+      type: "Cliente",
+      text: "Comunicación perfecta en todo momento. Repetiría sin dudar.",
       rating: 5,
       avatar: "https://randomuser.me/api/portraits/women/68.jpg",
     },
@@ -29,7 +35,16 @@ export default function Reviews() {
     <div className="reviews-section">
       <Title className="reviews-title">Opiniones de clientes</Title>
 
-      <Carousel autoplay dots className="reviews-carousel">
+      <Carousel
+        autoplay
+        dots
+        adaptiveHeight
+        slidesToShow={1}
+        slidesToScroll={1}
+        centerMode={false}
+        infinite
+        className="reviews-carousel"
+      >
         {reviews.map((r) => (
           <div key={r.name} className="reviews-slide">
             <Card className="review-card">
@@ -44,6 +59,10 @@ export default function Reviews() {
                 {r.name}
               </Title>
 
+              <div className="review-meta">
+                {r.city} · {r.type}
+              </div>
+
               <div className="review-rating">
                 {Array.from({ length: r.rating }).map((_, i) => (
                   <StarFilled key={i} className="star" />
@@ -56,9 +75,7 @@ export default function Reviews() {
         ))}
       </Carousel>
 
-      {/* ================= STYLES ================= */}
-      <style>
-        {`
+      <style>{`
 /* ================= SECTION ================= */
 
 .reviews-section {
@@ -66,10 +83,9 @@ export default function Reviews() {
   background: #f8f8f8;
 }
 
-/* ➕ ADD mobile fix */
 @media (max-width: 768px) {
   .reviews-section {
-    padding: 40px 16px; /* ✅ FIX */
+    padding: 40px 16px;
   }
 }
 
@@ -80,48 +96,79 @@ export default function Reviews() {
   text-align: center;
 }
 
-/* ➕ ADD */
 @media (max-width: 768px) {
   .reviews-title {
-    font-size: 24px !important; /* ✅ FIX */
+    font-size: 24px !important;
   }
+}
+
+/* ================= HARD FIX SLICK ================= */
+
+.reviews-carousel .slick-list {
+  overflow: hidden !important;
+}
+
+.reviews-carousel .slick-track {
+  display: block !important; /* 🔥 убираем flex */
+}
+
+.reviews-carousel .slick-slide {
+  width: 100% !important;
+  float: left;
+}
+
+.reviews-carousel .slick-slide > div {
+  width: 100%;
 }
 
 /* ================= SLIDE ================= */
 
 .reviews-slide {
-  display: flex;
-  justify-content: center;
+  width: 100%;
 }
 
 /* ================= CARD ================= */
 
 .review-card {
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  margin: 0 auto; /* 🔥 центрирование */
+  padding: 34px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
   background: white;
   text-align: center;
-  max-width: 600px;
+  max-width: 620px;
   width: 100%;
+  transition: 0.3s;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
 }
 
 /* ================= AVATAR ================= */
 
 .review-avatar {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* ================= NAME ================= */
 
 .review-name {
-  margin-bottom: 10px !important;
+  margin-bottom: 4px !important;
+}
+
+/* ================= META ================= */
+
+.review-meta {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 12px;
 }
 
 /* ================= RATING ================= */
 
 .review-rating {
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .star {
@@ -135,20 +182,19 @@ export default function Reviews() {
 .review-text {
   font-size: 16px;
   color: #555;
+  line-height: 1.6;
 }
 
-/* ➕ ADD mobile fix */
 @media (max-width: 768px) {
   .review-text {
     font-size: 14px;
   }
 
   .review-card {
-    padding: 20px; /* ✅ FIX */
+    padding: 22px;
   }
 }
-        `}
-      </style>
+      `}</style>
     </div>
   );
 }

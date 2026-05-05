@@ -21,8 +21,8 @@ export default function ServicesPage() {
     },
     {
       icon: <DollarOutlined />,
-      title: "Inversiones en automóviles",
-      text: "Conduce, participa en beneficios y optimiza la rentabilidad del vehículo.",
+      title: "CLUB DE INVERSORES",
+      text: "Invierte en nuestra compañía dentro de un entorno privado de inversión estructurado.",
     },
   ];
 
