@@ -257,76 +257,42 @@ html body {
 /* ================= HEADER ================= */
 
 .main-header {
-  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: clamp(64px, 8vw, 90px);
+  padding: 0 clamp(16px, 4vw, 40px);
+
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
 }
 
-/* ➕ ADD: адаптация header */
-@media (max-width: 768px) {
-  .main-header {
-    padding: 0 16px; /* ✅ FIX */
-    height: 64px; /* ✅ FIX */
-  }
-}
-
-/* ================= LOGO ================= */
+/* ================= LOGO  ================= */
 
 .logo-block {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-right: 40px;
   white-space: nowrap;
 }
 
 .logo-block img {
-  height: 64px;
+  height: clamp(70px, 6vw, 110px); 
+  width: auto;
+  object-fit: contain;
 }
 
-/* ➕ ADD: адаптация логотипа */
-@media (max-width: 768px) {
-  .logo-block {
-    gap: 6px;
-    margin-right: 10px;
-  }
-
-  .logo-block img {
-    height: 40px; /* ✅ FIX */
-  }
-
-  .logo-block span {
-    font-size: 16px; /* ✅ FIX */
-  }
+.logo-block span {
+  font-weight: 700;
+  font-size: clamp(16px, 1.8vw, 22px); 
 }
 
-/* ================= CONTACTS ================= */
+/* ================= MENU ================= */
 
-.desktop-contacts {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.email {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.phone-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #e5e5e5;
-  border: none;
-  font-weight: 600;
-}
-
-/* ================= BURGER ================= */
-
-.mobile-burger {
-  display: none;
-  align-items: center;
-  justify-content: center;
+.main-menu {
+  background: transparent !important;
+  border-bottom: none !important;
 }
 
 /* ================= MENU STYLES ================= */
@@ -347,11 +313,65 @@ html body {
   background: transparent !important;
 }
 
-/* ================= MOBILE ================= */
+/* ================= CONTACTS ================= */
+
+.desktop-contacts {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.email {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ================= BUTTON ================= */
+
+.phone-btn.ant-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #e5e5e5;
+  border: none;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+/* hover */
+.phone-btn.ant-btn:hover {
+  background: #dcdcdc;
+  color: #000;
+  border-color: transparent;
+  box-shadow: none !important;
+}
+
+.phone-btn.ant-btn:focus,
+.phone-btn.ant-btn:active,
+.phone-btn.ant-btn:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(255, 26, 26, 0.35) !important;
+  border-color: #ff1a1a !important;
+}
+
+.phone-btn.ant-btn:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 26, 26, 0.35) !important;
+}
+
+/* ================= BURGER ================= */
+
+.mobile-burger {
+  display: none;
+}
+
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 992px) {
-  .desktop-menu { display: none; }
-  .desktop-contacts { display: none; }
+  .desktop-menu,
+  .desktop-contacts {
+    display: none;
+  }
 
   .mobile-burger {
     display: flex;
@@ -359,10 +379,9 @@ html body {
   }
 }
 
-/* ➕ ADD: ещё более узкие экраны */
 @media (max-width: 480px) {
   .logo-block span {
-    display: none; /* ✅ FIX: чтобы не ломало header */
+    display: none;
   }
 }
 
@@ -380,43 +399,33 @@ html body {
   font-weight: 600;
   height: 48px;
 }
-        `})]})}var{Footer:mI}=Fj,{Title:hI,Paragraph:gI}=$N;function _I(){return(0,$.jsxs)($.Fragment,{children:[(0,$.jsxs)(mI,{style:{background:`#f5f5f5`,color:`#000`,padding:`80px 40px`,borderTop:`1px solid #ddd`},className:`footer`,children:[(0,$.jsxs)(_M,{gutter:[40,40],className:`footer-grid`,children:[(0,$.jsxs)(bO,{xs:24,sm:12,md:6,children:[(0,$.jsxs)(`div`,{className:`footer-logo`,children:[(0,$.jsx)(`img`,{src:`/skorpio/logo/logo.png`,alt:`Skorpio Importwagen`}),(0,$.jsx)(hI,{level:3,className:`footer-title`,children:`Skorpio Importwagen`})]}),(0,$.jsx)(gI,{className:`footer-desc`,children:`Importación de vehículos desde la UE a España`})]}),(0,$.jsxs)(bO,{xs:24,sm:12,md:6,children:[(0,$.jsx)(hI,{level:4,className:`footer-title`,children:`Navegación`}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/`,children:`Inicio`})}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/services`,children:`Servicios`})}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/catalog`,children:`Catálogo`})}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/about`,children:`Sobre nosotros`})}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/contacts`,children:`Contactos`})})]}),(0,$.jsxs)(bO,{xs:24,sm:12,md:6,children:[(0,$.jsx)(hI,{level:4,className:`footer-title`,children:`Contactos`}),(0,$.jsx)(gI,{className:`footer-text`,children:`+34 678 123 456`}),(0,$.jsx)(gI,{className:`footer-text`,children:`info@skorpio.es`}),(0,$.jsx)(gI,{className:`footer-text`,children:`España, Málaga`})]}),(0,$.jsxs)(bO,{xs:24,sm:12,md:6,children:[(0,$.jsx)(hI,{level:4,className:`footer-title`,children:`Redes sociales`}),(0,$.jsxs)(`div`,{className:`footer-socials`,children:[(0,$.jsx)(dP,{className:`footer-icon`}),(0,$.jsx)(mP,{className:`footer-icon`}),(0,$.jsx)(MP,{className:`footer-icon`}),(0,$.jsx)(VP,{className:`footer-icon`})]})]})]}),(0,$.jsxs)(`div`,{className:`footer-bottom`,children:[`© `,new Date().getFullYear(),` Skorpio Importwagen. Todos los derechos reservados.`]})]}),(0,$.jsx)(`style`,{children:`
-/* ================= FOOTER BASE ================= */
-
+        `})]})}var{Footer:mI}=Fj,{Title:hI,Paragraph:gI}=$N;function _I(){return(0,$.jsxs)($.Fragment,{children:[(0,$.jsxs)(mI,{className:`footer`,children:[(0,$.jsxs)(_M,{gutter:[32,32],className:`footer-grid`,children:[(0,$.jsxs)(bO,{xs:24,md:6,children:[(0,$.jsxs)(`div`,{className:`footer-logo-block`,children:[(0,$.jsx)(`img`,{src:`/skorpio/logo/logo.png`,alt:`Skorpio Importwagen`}),(0,$.jsx)(`span`,{className:`footer-logo-text`,children:`Skorpio Importwagen`})]}),(0,$.jsx)(gI,{className:`footer-desc`,children:`Importación de vehículos desde la UE a España`})]}),(0,$.jsxs)(bO,{xs:24,sm:12,md:6,children:[(0,$.jsx)(hI,{level:4,className:`footer-title`,children:`Navegación`}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/`,children:`Inicio`})}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/services`,children:`Servicios`})}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/catalog`,children:`Catálogo`})}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/about`,children:`Sobre nosotros`})}),(0,$.jsx)(gI,{children:(0,$.jsx)(`a`,{className:`footer-link`,href:`/contacts`,children:`Contactos`})})]}),(0,$.jsxs)(bO,{xs:24,sm:12,md:6,children:[(0,$.jsx)(hI,{level:4,className:`footer-title`,children:`Contactos`}),(0,$.jsx)(gI,{className:`footer-text`,children:`+34 678 123 456`}),(0,$.jsx)(gI,{className:`footer-text`,children:`info@skorpio.es`}),(0,$.jsx)(gI,{className:`footer-text`,children:`España, Málaga`})]}),(0,$.jsxs)(bO,{xs:24,sm:12,md:6,children:[(0,$.jsx)(hI,{level:4,className:`footer-title`,children:`Redes sociales`}),(0,$.jsxs)(`div`,{className:`footer-socials`,children:[(0,$.jsx)(dP,{className:`footer-icon`}),(0,$.jsx)(mP,{className:`footer-icon`}),(0,$.jsx)(MP,{className:`footer-icon`}),(0,$.jsx)(VP,{className:`footer-icon`})]})]})]}),(0,$.jsxs)(`div`,{className:`footer-bottom`,children:[`© `,new Date().getFullYear(),` Skorpio Importwagen. Todos los derechos reservados.`]})]}),(0,$.jsx)(`style`,{children:`
 .footer {
+  background: #f5f5f5;
   padding: 80px 40px;
-}
-
-/* ➕ ADD: mobile padding fix */
-@media (max-width: 768px) {
-  .footer {
-    padding: 40px 16px; /* ✅ FIX */
-  }
+  border-top: 1px solid #ddd;
 }
 
 /* ================= LOGO ================= */
 
-.footer-logo {
+.footer-logo-block {
   display: flex;
   align-items: center;
-  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.footer-logo img {
-  height: 60px;
+.footer-logo-block img {
+  height: clamp(80px, 6vw, 110px);
+  width: auto;
+  object-fit: contain;
 }
 
-/* ➕ ADD: mobile logo fix */
-@media (max-width: 768px) {
-  .footer-logo {
-    flex-direction: column; /* ✅ FIX */
-    text-align: center;
-    gap: 8px;
-  }
-
-  .footer-logo img {
-    height: 48px; /* ➕ ADD */
-  }
+.footer-logo-text {
+  font-size: clamp(16px, 1.8vw, 22px);
+  font-weight: 700;
+  color: #000;
+  line-height: 1;
+  margin: 0;
 }
 
 /* ================= TEXT ================= */
@@ -425,15 +434,6 @@ html body {
 .footer-text {
   color: #444;
   font-size: 16px;
-}
-
-/* ➕ ADD: smaller text on mobile */
-@media (max-width: 768px) {
-  .footer-desc,
-  .footer-text {
-    font-size: 14px; /* ✅ FIX */
-    text-align: center;
-  }
 }
 
 /* ================= TITLES ================= */
@@ -460,21 +460,11 @@ html body {
 .footer-socials {
   font-size: 28px;
   color: #000;
+  display: flex;
+  gap: 18px;
 }
-
-/* ➕ ADD: mobile socials fix */
-@media (max-width: 768px) {
-  .footer-socials {
-    display: flex;
-    justify-content: center;
-    font-size: 24px; /* ✅ FIX */
-  }
-}
-
-/* ================= ICONS ================= */
 
 .footer-icon {
-  margin-right: 20px;
   cursor: pointer;
   transition: 0.2s;
 }
@@ -492,13 +482,52 @@ html body {
   font-size: 14px;
 }
 
-/* ➕ ADD: spacing fix */
+/* ================= MOBILE: EVERYTHING CENTER ================= */
+
 @media (max-width: 768px) {
+
+  .footer {
+    padding: 40px 16px;
+  }
+
+  .footer-logo-block,
+  .footer-desc,
+  .footer-text,
+  .footer-title,
+  .footer-link,
+  .footer-grid {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* логотип вертикально */
+  .footer-logo-block {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo-text {
+    font-size: 18px;
+  }
+
+  /* соцсети строго по центру */
+  .footer-socials {
+    justify-content: center;
+  }
+
+  /* центрируем колонки Ant Design */
+  .footer-grid .ant-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .footer-bottom {
-    margin-top: 30px; /* ✅ FIX */
+    margin-top: 30px;
+    text-align: center;
   }
 }
-        `})]})}var{Header:vI,Content:yI,Footer:bI}=Fj;function xI(){return(0,$.jsxs)(Fj,{style:{minHeight:`100dvh`,display:`flex`,flexDirection:`column`},children:[(0,$.jsx)(vI,{style:{padding:0,background:`transparent`},children:(0,$.jsx)(pI,{})}),(0,$.jsx)(yI,{style:{background:`#fff`,flex:1,padding:`0 16px`},children:(0,$.jsx)(`div`,{style:{maxWidth:`1200px`,margin:`0 auto`,width:`100%`},children:(0,$.jsx)(Nt,{})})}),(0,$.jsx)(bI,{style:{padding:0,background:`transparent`},children:(0,$.jsx)(_I,{})})]})}var{Title:SI,Paragraph:CI}=$N;function wI(){return(0,$.jsxs)(`div`,{className:`hero-section`,children:[(0,$.jsxs)(`div`,{className:`hero-content`,children:[(0,$.jsx)(SI,{className:`hero-title`,children:`Importación de coches desde la UE a España — fácil y rentable`}),(0,$.jsx)(CI,{className:`hero-text`,children:`Traemos cualquier vehículo de Alemania y otros países de la UE por encargo o como inversión`}),(0,$.jsx)(Jw,{className:`hero-btn`,children:`Calcular el coste`})]}),(0,$.jsx)(`style`,{children:`
+      `})]})}var{Header:vI,Content:yI,Footer:bI}=Fj;function xI(){return(0,$.jsxs)(Fj,{style:{minHeight:`100dvh`,display:`flex`,flexDirection:`column`},children:[(0,$.jsx)(vI,{style:{padding:0,background:`transparent`},children:(0,$.jsx)(pI,{})}),(0,$.jsx)(yI,{style:{background:`#fff`,flex:1,padding:`0 16px`},children:(0,$.jsx)(`div`,{style:{maxWidth:`1200px`,margin:`0 auto`,width:`100%`},children:(0,$.jsx)(Nt,{})})}),(0,$.jsx)(bI,{style:{padding:0,background:`transparent`},children:(0,$.jsx)(_I,{})})]})}var{Title:SI,Paragraph:CI}=$N;function wI(){return(0,$.jsxs)(`div`,{className:`hero-section`,children:[(0,$.jsxs)(`div`,{className:`hero-content`,children:[(0,$.jsx)(SI,{className:`hero-title`,children:`Importación de coches desde la UE a España — fácil y rentable`}),(0,$.jsx)(CI,{className:`hero-text`,children:`Traemos cualquier vehículo de Alemania y otros países de la UE por encargo o como inversión`}),(0,$.jsx)(Jw,{className:`hero-btn`,children:`Calcular el coste`})]}),(0,$.jsx)(`style`,{children:`
 /* ================= HERO ================= */
 
 .hero-section {
@@ -777,7 +806,7 @@ html body {
     width: 100%; /* ✅ FIX */
   }
 }
-        `})]})}var{Title:FI,Paragraph:II}=$N;function LI(){return(0,$.jsxs)(`div`,{className:`reviews-section`,children:[(0,$.jsx)(FI,{className:`reviews-title`,children:`Opiniones de clientes`}),(0,$.jsx)(fO,{autoplay:!0,dots:!0,className:`reviews-carousel`,children:[{name:`Anna M.`,text:`¡Servicio excelente! Trajeron el coche rápido y sin complicaciones.`,rating:5,avatar:`https://randomuser.me/api/portraits/women/44.jpg`},{name:`Igor K.`,text:`Enfoque profesional, muy satisfecho con la compra.`,rating:5,avatar:`https://randomuser.me/api/portraits/men/32.jpg`},{name:`Maria L.`,text:`Proceso transparente y comunicación perfecta. ¡Muy recomendable!`,rating:5,avatar:`https://randomuser.me/api/portraits/women/68.jpg`}].map(e=>(0,$.jsx)(`div`,{className:`reviews-slide`,children:(0,$.jsxs)(XE,{className:`review-card`,children:[(0,$.jsx)(LS,{size:80,src:e.avatar,icon:(0,$.jsx)(FP,{}),className:`review-avatar`}),(0,$.jsx)(FI,{level:4,className:`review-name`,children:e.name}),(0,$.jsx)(`div`,{className:`review-rating`,children:Array.from({length:e.rating}).map((e,t)=>(0,$.jsx)(gM,{className:`star`},t))}),(0,$.jsx)(II,{className:`review-text`,children:e.text})]})},e.name))}),(0,$.jsx)(`style`,{children:`
+        `})]})}var{Title:FI,Paragraph:II}=$N;function LI(){return(0,$.jsxs)(`div`,{className:`reviews-section`,children:[(0,$.jsx)(FI,{className:`reviews-title`,children:`Opiniones de clientes`}),(0,$.jsx)(fO,{autoplay:!0,dots:!0,adaptiveHeight:!0,slidesToShow:1,slidesToScroll:1,centerMode:!1,infinite:!0,className:`reviews-carousel`,children:[{name:`Anna M.`,city:`Málaga`,type:`Compradora`,text:`Servicio impecable. El coche llegó rápido y exactamente como se describía.`,rating:5,avatar:`https://randomuser.me/api/portraits/women/44.jpg`},{name:`Igor K.`,city:`Madrid`,type:`Inversor`,text:`Proceso profesional y transparente. Muy satisfecho con el resultado.`,rating:5,avatar:`https://randomuser.me/api/portraits/men/32.jpg`},{name:`Maria L.`,city:`Valencia`,type:`Cliente`,text:`Comunicación perfecta en todo momento. Repetiría sin dudar.`,rating:5,avatar:`https://randomuser.me/api/portraits/women/68.jpg`}].map(e=>(0,$.jsx)(`div`,{className:`reviews-slide`,children:(0,$.jsxs)(XE,{className:`review-card`,children:[(0,$.jsx)(LS,{size:80,src:e.avatar,icon:(0,$.jsx)(FP,{}),className:`review-avatar`}),(0,$.jsx)(FI,{level:4,className:`review-name`,children:e.name}),(0,$.jsxs)(`div`,{className:`review-meta`,children:[e.city,` · `,e.type]}),(0,$.jsx)(`div`,{className:`review-rating`,children:Array.from({length:e.rating}).map((e,t)=>(0,$.jsx)(gM,{className:`star`},t))}),(0,$.jsx)(II,{className:`review-text`,children:e.text})]})},e.name))}),(0,$.jsx)(`style`,{children:`
 /* ================= SECTION ================= */
 
 .reviews-section {
@@ -785,10 +814,9 @@ html body {
   background: #f8f8f8;
 }
 
-/* ➕ ADD mobile fix */
 @media (max-width: 768px) {
   .reviews-section {
-    padding: 40px 16px; /* ✅ FIX */
+    padding: 40px 16px;
   }
 }
 
@@ -799,48 +827,79 @@ html body {
   text-align: center;
 }
 
-/* ➕ ADD */
 @media (max-width: 768px) {
   .reviews-title {
-    font-size: 24px !important; /* ✅ FIX */
+    font-size: 24px !important;
   }
+}
+
+/* ================= HARD FIX SLICK ================= */
+
+.reviews-carousel .slick-list {
+  overflow: hidden !important;
+}
+
+.reviews-carousel .slick-track {
+  display: block !important; /* 🔥 убираем flex */
+}
+
+.reviews-carousel .slick-slide {
+  width: 100% !important;
+  float: left;
+}
+
+.reviews-carousel .slick-slide > div {
+  width: 100%;
 }
 
 /* ================= SLIDE ================= */
 
 .reviews-slide {
-  display: flex;
-  justify-content: center;
+  width: 100%;
 }
 
 /* ================= CARD ================= */
 
 .review-card {
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  margin: 0 auto; /* 🔥 центрирование */
+  padding: 34px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
   background: white;
   text-align: center;
-  max-width: 600px;
+  max-width: 620px;
   width: 100%;
+  transition: 0.3s;
+}
+
+.review-card:hover {
+  transform: translateY(-4px);
 }
 
 /* ================= AVATAR ================= */
 
 .review-avatar {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 /* ================= NAME ================= */
 
 .review-name {
-  margin-bottom: 10px !important;
+  margin-bottom: 4px !important;
+}
+
+/* ================= META ================= */
+
+.review-meta {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 12px;
 }
 
 /* ================= RATING ================= */
 
 .review-rating {
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .star {
@@ -854,19 +913,19 @@ html body {
 .review-text {
   font-size: 16px;
   color: #555;
+  line-height: 1.6;
 }
 
-/* ➕ ADD mobile fix */
 @media (max-width: 768px) {
   .review-text {
     font-size: 14px;
   }
 
   .review-card {
-    padding: 20px; /* ✅ FIX */
+    padding: 22px;
   }
 }
-        `})]})}var{Title:RI,Paragraph:zI}=$N;function BI(){return(0,$.jsxs)(`div`,{className:`faq-section`,children:[(0,$.jsx)(RI,{level:2,className:`faq-title`,children:`Preguntas frecuentes`}),(0,$.jsx)(zI,{className:`faq-subtitle`,children:`Resolvemos las dudas más comunes sobre importación, garantías e inversión.`}),(0,$.jsxs)(_M,{gutter:[20,20],className:`faq-row`,children:[(0,$.jsx)(bO,{xs:24,md:12,children:(0,$.jsx)(`div`,{className:`faq-box`,children:(0,$.jsx)(Ah,{items:[{key:`1`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(wk,{className:`faq-icon`}),`Plazos de entrega`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Normalmente entre `,(0,$.jsx)(`strong`,{children:`7 y 14 días`}),`, dependiendo del país de origen y la disponibilidad del vehículo.`]})},{key:`2`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(EP,{className:`faq-icon`}),`¿Qué garantías ofrecen?`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Ofrecemos `,(0,$.jsx)(`strong`,{children:`transparencia total`}),`, informes completos del vehículo y seguridad jurídica en toda la operación.`]})}],expandIconPosition:`end`})})}),(0,$.jsx)(bO,{xs:24,md:12,children:(0,$.jsx)(`div`,{className:`faq-box`,children:(0,$.jsx)(Ah,{items:[{key:`3`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(aP,{className:`faq-icon`}),`Comisión`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Trabajamos con una `,(0,$.jsx)(`strong`,{children:`comisión fija`}),` que cubre todo el proceso de importación y entrega en España.`]})},{key:`4`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(RP,{className:`faq-icon`}),`Riesgos de inversión`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Los riesgos son `,(0,$.jsx)(`strong`,{children:`mínimos`}),` gracias a una selección adecuada del vehículo y un análisis previo del mercado.`]})}],expandIconPosition:`end`})})})]}),(0,$.jsxs)(`div`,{className:`faq-cta`,children:[(0,$.jsx)(RI,{level:4,children:`¿Tienes más preguntas?`}),(0,$.jsx)(zI,{children:`Estamos aquí para ayudarte con cualquier duda sobre importación o inversión.`}),(0,$.jsx)(Jw,{className:`faq-btn`,href:`/contactos`,children:`Contáctanos`})]}),(0,$.jsx)(`style`,{children:`
+      `})]})}var{Title:RI,Paragraph:zI}=$N;function BI(){return(0,$.jsxs)(`div`,{className:`faq-section`,children:[(0,$.jsx)(RI,{level:2,className:`faq-title`,children:`Preguntas frecuentes`}),(0,$.jsx)(zI,{className:`faq-subtitle`,children:`Resolvemos las dudas más comunes sobre importación, garantías e inversión.`}),(0,$.jsxs)(_M,{gutter:[20,20],className:`faq-row`,children:[(0,$.jsx)(bO,{xs:24,md:12,children:(0,$.jsx)(`div`,{className:`faq-box`,children:(0,$.jsx)(Ah,{items:[{key:`1`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(wk,{className:`faq-icon`}),`Plazos de entrega`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Normalmente entre `,(0,$.jsx)(`strong`,{children:`7 y 14 días`}),`, dependiendo del país de origen y la disponibilidad del vehículo.`]})},{key:`2`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(EP,{className:`faq-icon`}),`¿Qué garantías ofrecen?`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Ofrecemos `,(0,$.jsx)(`strong`,{children:`transparencia total`}),`, informes completos del vehículo y seguridad jurídica en toda la operación.`]})}],expandIconPosition:`end`})})}),(0,$.jsx)(bO,{xs:24,md:12,children:(0,$.jsx)(`div`,{className:`faq-box`,children:(0,$.jsx)(Ah,{items:[{key:`3`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(aP,{className:`faq-icon`}),`Comisión`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Trabajamos con una `,(0,$.jsx)(`strong`,{children:`comisión fija`}),` que cubre todo el proceso de importación y entrega en España.`]})},{key:`4`,label:(0,$.jsxs)(`span`,{className:`faq-label`,children:[(0,$.jsx)(RP,{className:`faq-icon`}),`Riesgos de inversión`]}),children:(0,$.jsxs)(zI,{className:`faq-text`,children:[`Los riesgos son `,(0,$.jsx)(`strong`,{children:`mínimos`}),` gracias a una selección adecuada del vehículo y un análisis previo del mercado.`]})}],expandIconPosition:`end`})})})]}),(0,$.jsxs)(`div`,{className:`faq-cta`,children:[(0,$.jsx)(RI,{level:4,children:`¿Tienes más preguntas?`}),(0,$.jsx)(zI,{children:`Estamos aquí para ayudarte con cualquier duda sobre importación o inversión.`}),(0,$.jsx)(Jw,{className:`faq-btn`,href:`/contactos`,children:`Contáctanos`})]}),(0,$.jsx)(`style`,{children:`
 /* ================= SECTION ================= */
 
 .faq-section {
@@ -1108,7 +1167,7 @@ html body {
     padding: 40px 16px;
   }
 }
-        `})]})}var{Title:KI,Paragraph:qI}=$N;function JI(){return(0,$.jsxs)(`div`,{className:`services-page`,children:[(0,$.jsx)(KI,{className:`services-title`,children:`Nuestros servicios`}),(0,$.jsx)(qI,{className:`services-subtitle`,children:`Importación de vehículos desde la UE, búsqueda personalizada e inversión.`}),(0,$.jsx)(_M,{gutter:[24,24],className:`services-grid`,children:[{icon:(0,$.jsx)(nP,{}),title:`Importación y venta`,text:`Importación de coches desde la UE y venta en España. Listos para matricular.`},{icon:(0,$.jsx)(kP,{}),title:`Importación por encargo`,text:`Buscamos el coche ideal, lo revisamos y lo entregamos matriculado.`},{icon:(0,$.jsx)(aP,{}),title:`Inversiones en automóviles`,text:`Conduce, participa en beneficios y optimiza la rentabilidad del vehículo.`}].map(e=>(0,$.jsx)(bO,{xs:24,md:8,children:(0,$.jsxs)(XE,{className:`service-card`,children:[(0,$.jsx)(`div`,{className:`icon`,children:e.icon}),(0,$.jsx)(KI,{level:3,className:`service-card-title`,children:e.title}),(0,$.jsx)(qI,{className:`service-text`,children:e.text})]})},e.title))}),(0,$.jsxs)(`section`,{className:`investment`,children:[(0,$.jsx)(KI,{level:3,children:`Inversiones en automóviles`}),(0,$.jsx)(qI,{children:`Invierte en el coche de tus sueños. Lo importamos, lo usas y luego se vende.`}),(0,$.jsx)(qI,{children:`Recuperas capital + 50% beneficio si existe plusvalía.`}),(0,$.jsxs)(qI,{children:[(0,$.jsx)(`strong`,{children:`Ventaja fiscal:`}),` inversión deducible al 100%.`]}),(0,$.jsx)(XE,{className:`info-card`,children:`Casos reales y contratos — en desarrollo.`})]}),(0,$.jsx)(`style`,{children:`
+        `})]})}var{Title:KI,Paragraph:qI}=$N;function JI(){return(0,$.jsxs)(`div`,{className:`services-page`,children:[(0,$.jsx)(KI,{className:`services-title`,children:`Nuestros servicios`}),(0,$.jsx)(qI,{className:`services-subtitle`,children:`Importación de vehículos desde la UE, búsqueda personalizada e inversión.`}),(0,$.jsx)(_M,{gutter:[24,24],className:`services-grid`,children:[{icon:(0,$.jsx)(nP,{}),title:`Importación y venta`,text:`Importación de coches desde la UE y venta en España. Listos para matricular.`},{icon:(0,$.jsx)(kP,{}),title:`Importación por encargo`,text:`Buscamos el coche ideal, lo revisamos y lo entregamos matriculado.`},{icon:(0,$.jsx)(aP,{}),title:`CLUB DE INVERSORES`,text:`Invierte en nuestra compañía dentro de un entorno privado de inversión estructurado.`}].map(e=>(0,$.jsx)(bO,{xs:24,md:8,children:(0,$.jsxs)(XE,{className:`service-card`,children:[(0,$.jsx)(`div`,{className:`icon`,children:e.icon}),(0,$.jsx)(KI,{level:3,className:`service-card-title`,children:e.title}),(0,$.jsx)(qI,{className:`service-text`,children:e.text})]})},e.title))}),(0,$.jsxs)(`section`,{className:`investment`,children:[(0,$.jsx)(KI,{level:3,children:`Inversiones en automóviles`}),(0,$.jsx)(qI,{children:`Invierte en el coche de tus sueños. Lo importamos, lo usas y luego se vende.`}),(0,$.jsx)(qI,{children:`Recuperas capital + 50% beneficio si existe plusvalía.`}),(0,$.jsxs)(qI,{children:[(0,$.jsx)(`strong`,{children:`Ventaja fiscal:`}),` inversión deducible al 100%.`]}),(0,$.jsx)(XE,{className:`info-card`,children:`Casos reales y contratos — en desarrollo.`})]}),(0,$.jsx)(`style`,{children:`
 .services-page {
   padding: 60px 40px;
 }
