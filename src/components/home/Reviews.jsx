@@ -102,42 +102,53 @@ export default function Reviews() {
   }
 }
 
-/* ================= HARD FIX SLICK ================= */
+/* ================= CAROUSEL FIX (КЛЮЧЕВОЕ) ================= */
 
+.reviews-carousel {
+  overflow: hidden;
+}
+
+/* slick reset — убираем боковые смещения */
 .reviews-carousel .slick-list {
   overflow: hidden !important;
+  padding: 0 !important;
 }
 
 .reviews-carousel .slick-track {
-  display: block !important; /* 🔥 убираем flex */
+  display: flex !important;
+  align-items: stretch;
 }
 
 .reviews-carousel .slick-slide {
-  width: 100% !important;
-  float: left;
+  display: flex !important;
+  justify-content: center;
 }
 
+/* центрирование контейнера */
 .reviews-carousel .slick-slide > div {
   width: 100%;
+  display: flex !important;
+  justify-content: center;
 }
 
 /* ================= SLIDE ================= */
 
 .reviews-slide {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /* ================= CARD ================= */
 
 .review-card {
-  margin: 0 auto; /* 🔥 центрирование */
+  width: min(620px, 100%);
+  margin: 0 auto;
   padding: 34px;
   border-radius: 16px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.08);
   background: white;
   text-align: center;
-  max-width: 620px;
-  width: 100%;
   transition: 0.3s;
 }
 
@@ -145,53 +156,15 @@ export default function Reviews() {
   transform: translateY(-4px);
 }
 
-/* ================= AVATAR ================= */
-
-.review-avatar {
-  margin-bottom: 16px;
-}
-
-/* ================= NAME ================= */
-
-.review-name {
-  margin-bottom: 4px !important;
-}
-
-/* ================= META ================= */
-
-.review-meta {
-  font-size: 14px;
-  color: #888;
-  margin-bottom: 12px;
-}
-
-/* ================= RATING ================= */
-
-.review-rating {
-  margin-bottom: 14px;
-}
-
-.star {
-  color: #ff1a1a;
-  font-size: 20px;
-  margin-right: 4px;
-}
-
-/* ================= TEXT ================= */
-
-.review-text {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.6;
-}
+/* ================= MOBILE FIX ================= */
 
 @media (max-width: 768px) {
-  .review-text {
-    font-size: 14px;
+  .review-card {
+    padding: 20px;
   }
 
-  .review-card {
-    padding: 22px;
+  .review-text {
+    font-size: 14px;
   }
 }
       `}</style>
