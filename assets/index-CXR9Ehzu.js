@@ -377,6 +377,14 @@ html body {
     display: flex;
     margin-left: auto;
   }
+
+   .main-header {
+    height: 95px;
+  }
+
+  .logo-block img {
+    height: 85px;
+  } 
 }
 
 @media (max-width: 480px) {
@@ -500,22 +508,23 @@ html body {
     justify-content: center !important;
   }
 
-  /* логотип вертикально */
   .footer-logo-block {
     flex-direction: column;
     align-items: center;
+  }
+
+  .footer-logo-block img {
+    height: 150px;
   }
 
   .footer-logo-text {
     font-size: 18px;
   }
 
-  /* соцсети строго по центру */
   .footer-socials {
     justify-content: center;
   }
 
-  /* центрируем колонки Ant Design */
   .footer-grid .ant-col {
     display: flex;
     flex-direction: column;
@@ -526,6 +535,7 @@ html body {
     margin-top: 30px;
     text-align: center;
   }
+}
 }
       `})]})}var{Header:vI,Content:yI,Footer:bI}=Fj;function xI(){return(0,$.jsxs)(Fj,{style:{minHeight:`100dvh`,display:`flex`,flexDirection:`column`},children:[(0,$.jsx)(vI,{style:{padding:0,background:`transparent`},children:(0,$.jsx)(pI,{})}),(0,$.jsx)(yI,{style:{background:`#fff`,flex:1,padding:`0 16px`},children:(0,$.jsx)(`div`,{style:{maxWidth:`1200px`,margin:`0 auto`,width:`100%`},children:(0,$.jsx)(Nt,{})})}),(0,$.jsx)(bI,{style:{padding:0,background:`transparent`},children:(0,$.jsx)(_I,{})})]})}var{Title:SI,Paragraph:CI}=$N;function wI(){return(0,$.jsxs)(`div`,{className:`hero-section`,children:[(0,$.jsxs)(`div`,{className:`hero-content`,children:[(0,$.jsx)(SI,{className:`hero-title`,children:`Importación de coches desde la UE a España — fácil y rentable`}),(0,$.jsx)(CI,{className:`hero-text`,children:`Traemos cualquier vehículo de Alemania y otros países de la UE por encargo o como inversión`}),(0,$.jsx)(Jw,{className:`hero-btn`,children:`Calcular el coste`})]}),(0,$.jsx)(`style`,{children:`
 /* ================= HERO ================= */
