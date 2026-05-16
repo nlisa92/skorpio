@@ -168,22 +168,23 @@ export default function FooterBar() {
     justify-content: center !important;
   }
 
-  /* логотип вертикально */
   .footer-logo-block {
     flex-direction: column;
     align-items: center;
+  }
+
+  .footer-logo-block img {
+    height: 150px;
   }
 
   .footer-logo-text {
     font-size: 18px;
   }
 
-  /* соцсети строго по центру */
   .footer-socials {
     justify-content: center;
   }
 
-  /* центрируем колонки Ant Design */
   .footer-grid .ant-col {
     display: flex;
     flex-direction: column;
@@ -194,6 +195,7 @@ export default function FooterBar() {
     margin-top: 30px;
     text-align: center;
   }
+}
 }
       `}</style>
     </>

@@ -245,6 +245,14 @@ export default function HeaderBar() {
     display: flex;
     margin-left: auto;
   }
+
+   .main-header {
+    height: 95px;
+  }
+
+  .logo-block img {
+    height: 85px;
+  } 
 }
 
 @media (max-width: 480px) {
