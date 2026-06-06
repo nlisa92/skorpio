@@ -10,6 +10,7 @@ import {
   Pagination,
   Drawer,
 } from "antd";
+import { supabase } from "../lib/supabaseClient";
 
 const { Title, Paragraph } = Typography;
 
@@ -29,12 +30,19 @@ export default function CatalogPage() {
   const pageSize = 6;
 
   useEffect(() => {
-    fetch("/data/cars.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setCars(data);
-        setFiltered(data);
-      });
+    async function loadCars() {
+      const { data, error } = await supabase.from("cars").select("*");
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      setCars(data);
+      setFiltered(data);
+    }
+
+    loadCars();
   }, []);
 
   const applyFilters = () => {
