@@ -138,6 +138,9 @@ export default function CatalogPage() {
                       <img
                         src={car.image || "/cars/fallback.png"}
                         alt={car.model}
+                        onError={(e) => {
+                          e.target.src = "/cars/fallback.png";
+                        }}
                       />
                     </div>
                   }
