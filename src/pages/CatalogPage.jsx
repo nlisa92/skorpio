@@ -9,7 +9,12 @@ import {
   Button,
   Pagination,
   Drawer,
+  Modal,
+  Form,
+  Input,
+  message,
 } from "antd";
+
 import { supabase } from "../lib/supabaseClient";
 
 const { Title, Paragraph } = Typography;
@@ -17,6 +22,7 @@ const { Title, Paragraph } = Typography;
 export default function CatalogPage() {
   const [cars, setCars] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [filters, setFilters] = useState({
     brand: null,
@@ -27,86 +33,191 @@ export default function CatalogPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterOpen, setFilterOpen] = useState(false);
 
+  const [open, setOpen] = useState(false);
+  const [selectedCar, setSelectedCar] = useState(null);
+
+  const [submitting, setSubmitting] = useState(false);
+
+  const [form] = Form.useForm();
+
   const pageSize = 6;
 
   useEffect(() => {
     async function loadCars() {
-      const { data, error } = await supabase.from("cars").select("*");
+      setLoading(true);
+
+      const { data, error } = await supabase
+        .from("cars")
+        .select("*");
 
       if (error) {
         console.error(error);
+        message.error("Error loading cars");
+        setLoading(false);
         return;
       }
 
-      setCars(data);
-      setFiltered(data);
+      setCars(data || []);
+      setFiltered(data || []);
+      setLoading(false);
     }
 
     loadCars();
   }, []);
 
   const applyFilters = () => {
-    let result = cars;
+    let result = [...cars];
 
-    if (filters.brand) result = result.filter((c) => c.brand === filters.brand);
-    if (filters.min) result = result.filter((c) => c.price >= filters.min);
-    if (filters.max) result = result.filter((c) => c.price <= filters.max);
+    if (filters.brand) {
+      result = result.filter(
+        (c) => c.brand === filters.brand
+      );
+    }
+
+    if (filters.min) {
+      result = result.filter(
+        (c) => c.price >= filters.min
+      );
+    }
+
+    if (filters.max) {
+      result = result.filter(
+        (c) => c.price <= filters.max
+      );
+    }
 
     setFiltered(result);
     setCurrentPage(1);
   };
 
   const resetFilters = () => {
-    setFilters({ brand: null, min: null, max: null });
+    setFilters({
+      brand: null,
+      min: null,
+      max: null,
+    });
+
     setFiltered(cars);
     setCurrentPage(1);
   };
 
-  const startIndex = (currentPage - 1) * pageSize;
-  const carsToShow = filtered.slice(startIndex, startIndex + pageSize);
+  const handleReserve = async (values) => {
+    if (!selectedCar) return;
+
+    setSubmitting(true);
+
+    const { error } = await supabase
+      .from("reservations")
+      .insert([
+        {
+          car_id: selectedCar.id,
+          car_name: `${selectedCar.brand} ${selectedCar.model}`,
+          name: values.name,
+          phone: values.phone,
+          email: values.email,
+          message: values.message,
+        },
+      ]);
+
+    setSubmitting(false);
+
+    if (error) {
+      console.error(error);
+      message.error("Error sending reservation");
+      return;
+    }
+
+    message.success("Reservation sent!");
+
+    setOpen(false);
+    form.resetFields();
+  };
+
+  const startIndex =
+    (currentPage - 1) * pageSize;
+
+  const carsToShow = filtered.slice(
+    startIndex,
+    startIndex + pageSize
+  );
+
+  const fallbackImage = `${import.meta.env.BASE_URL}cars/fallback.png`;
 
   const FilterContent = (
-    <Card className="filter-card">
+    <Card loading={loading} className="filter-card">
       <Title level={4}>Filtros</Title>
 
       <div className="filter-item">
         <label>Marca</label>
+
         <Select
           placeholder="Seleccionar"
           value={filters.brand}
-          onChange={(v) => setFilters({ ...filters, brand: v })}
+          onChange={(v) =>
+            setFilters({
+              ...filters,
+              brand: v,
+            })
+          }
           allowClear
           className="filter-control"
         >
-          <Select.Option value="BMW">BMW</Select.Option>
-          <Select.Option value="Audi">Audi</Select.Option>
-          <Select.Option value="Mercedes">Mercedes</Select.Option>
+          <Select.Option value="BMW">
+            BMW
+          </Select.Option>
+
+          <Select.Option value="Audi">
+            Audi
+          </Select.Option>
+
+          <Select.Option value="Mercedes">
+            Mercedes
+          </Select.Option>
         </Select>
       </div>
 
       <div className="filter-item">
         <label>Precio mín.</label>
+
         <InputNumber
           value={filters.min}
-          onChange={(v) => setFilters({ ...filters, min: v })}
+          onChange={(v) =>
+            setFilters({
+              ...filters,
+              min: v,
+            })
+          }
           className="filter-control"
         />
       </div>
 
       <div className="filter-item">
         <label>Precio máx.</label>
+
         <InputNumber
           value={filters.max}
-          onChange={(v) => setFilters({ ...filters, max: v })}
+          onChange={(v) =>
+            setFilters({
+              ...filters,
+              max: v,
+            })
+          }
           className="filter-control"
         />
       </div>
 
-      <Button block onClick={applyFilters} className="btn-primary">
+      <Button
+        block
+        onClick={applyFilters}
+        className="btn-primary"
+      >
         Aplicar filtros
       </Button>
 
-      <Button block onClick={resetFilters}>
+      <Button
+        block
+        onClick={resetFilters}
+      >
         Resetear
       </Button>
     </Card>
@@ -116,12 +227,16 @@ export default function CatalogPage() {
     <div className="catalog-page">
       {/* HEADER */}
       <div className="catalog-header">
-        <Title className="catalog-title">Catálogo de vehículos</Title>
+        <Title className="catalog-title">
+          Catálogo de vehículos
+        </Title>
 
         {/* MOBILE FILTER BUTTON */}
         <Button
           className="mobile-filter-btn"
-          onClick={() => setFilterOpen(true)}
+          onClick={() =>
+            setFilterOpen(true)
+          }
         >
           Filtros
         </Button>
@@ -136,62 +251,169 @@ export default function CatalogPage() {
         {/* CARS */}
         <Col xs={24} md={18}>
           <Row gutter={[16, 16]}>
-            {carsToShow.map((car) => (
-              <Col xs={24} sm={12} lg={8} key={car.id}>
-                <Card
-                  className="car-card"
-                  hoverable
-                  cover={
-                    <div className="car-image">
-                      <img
-                        src={car.image || "/cars/fallback.png"}
-                        alt={car.model}
-                        onError={(e) => {
-                          e.target.src = "/cars/fallback.png";
-                        }}
+            {loading
+              ? Array.from({ length: 6 }).map(
+                  (_, i) => (
+                    <Col
+                      xs={24}
+                      sm={12}
+                      lg={8}
+                      key={i}
+                    >
+                      <Card
+                        loading
+                        className="car-card"
                       />
-                    </div>
-                  }
-                >
-                  <Title level={4}>
-                    {car.brand} {car.model}
-                  </Title>
+                    </Col>
+                  )
+                )
+              : carsToShow.map((car) => (
+                  <Col
+                    xs={24}
+                    sm={12}
+                    lg={8}
+                    key={car.id}
+                  >
+                    <Card
+                      className="car-card"
+                      hoverable
+                      cover={
+                        <div className="car-image">
+                          <img
+                            src={
+                              car.image ||
+                              fallbackImage
+                            }
+                            alt={car.model}
+                            onError={(e) => {
+                              e.target.src =
+                                fallbackImage;
+                            }}
+                          />
+                        </div>
+                      }
+                    >
+                      <Title level={4}>
+                        {car.brand} {car.model}
+                      </Title>
 
-                  <Paragraph>{car.year}</Paragraph>
+                      <Paragraph>
+                        {car.year}
+                      </Paragraph>
 
-                  <Paragraph className="price">
-                    {car.price.toLocaleString()} €
-                  </Paragraph>
+                      <Paragraph className="price">
+                        {car.price?.toLocaleString()} €
+                      </Paragraph>
 
-                  <Button block className="btn-primary">
-                    Reservar
-                  </Button>
-                </Card>
-              </Col>
-            ))}
+                      <Button
+                        block
+                        className="btn-primary"
+                        onClick={() => {
+                          setSelectedCar(car);
+                          setOpen(true);
+                        }}
+                      >
+                        Reservar
+                      </Button>
+                    </Card>
+                  </Col>
+                ))}
           </Row>
 
-          <div className="pagination">
-            <Pagination
-              current={currentPage}
-              pageSize={pageSize}
-              total={filtered.length}
-              onChange={(p) => setCurrentPage(p)}
-            />
-          </div>
+          {!loading && (
+            <div className="pagination">
+              <Pagination
+                current={currentPage}
+                pageSize={pageSize}
+                total={filtered.length}
+                onChange={(p) =>
+                  setCurrentPage(p)
+                }
+              />
+            </div>
+          )}
         </Col>
       </Row>
 
       {/* MOBILE FILTER DRAWER */}
       <Drawer
         open={filterOpen}
-        onClose={() => setFilterOpen(false)}
+        onClose={() =>
+          setFilterOpen(false)
+        }
         placement="left"
       >
         {FilterContent}
       </Drawer>
 
-      {/* ================= STYLES ================= */}
+      {/* RESERVATION MODAL */}
+      <Modal
+        open={open}
+        onCancel={() =>
+          setOpen(false)
+        }
+        footer={null}
+        title="Reservar vehículo"
+      >
+        <Form
+          form={form}
+          layout="vertical"
+          onFinish={handleReserve}
+        >
+          <Form.Item
+            name="name"
+            label="Nombre"
+            rules={[
+              {
+                required: true,
+                message:
+                  "Ingrese su nombre",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="phone"
+            label="Teléfono"
+            rules={[
+              {
+                required: true,
+                message:
+                  "Ingrese su teléfono",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="email"
+            label="Email"
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="message"
+            label="Mensaje"
+          >
+            <Input.TextArea rows={4} />
+          </Form.Item>
+
+          <Button
+            htmlType="submit"
+            block
+            className="btn-primary"
+            loading={submitting}
+          >
+            Enviar reserva
+          </Button>
+        </Form>
+      </Modal>
+
+      {/* STYLES */}
       <style>
         {`
 .catalog-page {
@@ -201,7 +423,7 @@ export default function CatalogPage() {
 /* MOBILE */
 @media (max-width: 768px) {
   .catalog-page {
-    padding: 20px 12px; /* FIX */
+    padding: 20px 12px;
   }
 }
 
@@ -229,6 +451,7 @@ export default function CatalogPage() {
   border-radius: 12px;
 }
 
+/* FILTER ITEM */
 .filter-item {
   margin-bottom: 16px;
 }
@@ -238,12 +461,13 @@ export default function CatalogPage() {
   margin-top: 5px;
 }
 
-/* CAR */
+/* CAR CARD */
 .car-card {
   background: #fafafa;
   border-radius: 12px;
 }
 
+/* CAR IMAGE */
 .car-image {
   height: 180px;
   overflow: hidden;
@@ -255,6 +479,7 @@ export default function CatalogPage() {
   object-fit: cover;
 }
 
+/* PRICE */
 .price {
   font-size: 20px;
   font-weight: 600;
@@ -288,3 +513,4 @@ export default function CatalogPage() {
     </div>
   );
 }
+
